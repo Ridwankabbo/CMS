@@ -3,6 +3,7 @@
 use App\Http\Controllers\userController;
 use App\Http\Controllers\userInfoController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Usersinfo;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,7 +34,8 @@ Route::get('/admin-panel', function () {
 });
 
 Route::get('/profile', function () {
-    return view('profile_page');
+    $data = Usersinfo::where('user_id', auth()->id())->get();
+    return view('profile_page', ['datas' => $data]);
 });
 
 Route::get('/logout', [userController::class, 'logOut']);
@@ -43,6 +45,12 @@ Route::get('/about', function(){
 });
 
 // Route::get('/templates/portfolio/home', function(){
+//     return view('templates.portfolio.home');
+// });
+
+
+// Route::get('/templates/portfolio/home', function(){
+    
 //     return view('templates.portfolio.home');
 // });
 

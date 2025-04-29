@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Usersinfo;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -17,6 +18,7 @@ class userController extends Controller
 
         if(auth()->attempt(['email' => $incommingFields['email'], 'password' => $incommingFields['password']])){
             $request->session()->regenerate();
+            //$data = Usersinfo::where('user_id', auth()->id());
             return redirect('/profile');
         }
         else{

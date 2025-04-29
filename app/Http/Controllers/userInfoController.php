@@ -9,6 +9,7 @@ class userInfoController extends Controller
 {
     //
 
+
     public function Save(Request $request)
     {
         $request->validate([
@@ -21,15 +22,32 @@ class userInfoController extends Controller
 
         $request['user_id'] = auth()->id();
 
-        Usersinfo::create([
-            'title' => $request->title,
-            'intro_text' => $request->intro_text,
-            'image' => $request->image,
-            'about' => $request->about,
-            'phone' => $request->phone,
-            'user_id' => $request->user_id
+        $isData = Usersinfo::find($request['user_id']);
 
-        ]);
+
+        if($isData){
+
+            
+            Usersinfo::where('user_id', $request['user_id'])->update([
+                'title' => $request->title,
+                'intro_text' => $request->intro_text,
+                'image' => $request->image,
+                'about' => $request->about,
+                'phone' => $request->phone
+            ]);
+
+        }
+        else{
+            Usersinfo::create([
+                'title' => $request->title,
+                'intro_text' => $request->intro_text,
+                'image' => $request->image,
+                'about' => $request->about,
+                'phone' => $request->phone,
+                'user_id' => $request->user_id
+    
+            ]);
+        }
 
 
 
@@ -42,6 +60,8 @@ class userInfoController extends Controller
         // ]);
 
         //return redirect()->route('/profile')->with('success', 'Portfolio information added!');
+
+
         return redirect('/profile');
 
     }
@@ -55,5 +75,9 @@ class userInfoController extends Controller
         // Pass the data to a view
         return view('templates.portfolio.home', ['portfolio' => $userPortfolio]);
     }
+
+
+    
+
 
 }
