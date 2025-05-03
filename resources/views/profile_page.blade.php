@@ -68,7 +68,7 @@
                     @endif
 
                     <div class="mt-5">
-                        <Button class="btn btn-dark p-2"><a class="text-white" style="text-decoration: none" href="localhost:8000/templates/portfolio/home" target="_blank" >Click hear to see your portfolio</Button></p>
+                        <a href="http://localhost:8000/templates/portfolio/home" target="_blank" class="btn bg-dark text-white">Click heare to vesit your profile</a>
                     </div>
                 </div>
 
