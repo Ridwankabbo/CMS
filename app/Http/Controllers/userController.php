@@ -41,7 +41,8 @@ class userController extends Controller
         $user = User::create($inCommingFields);
         auth()->login($user);
 
-        return redirect('profile');
+        $user_data = Usersinfo::where('user_id', auth()->id())->get();
+        return redirect('/profile');
        
     }
 

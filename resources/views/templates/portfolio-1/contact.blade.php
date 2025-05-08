@@ -1,4 +1,4 @@
-@extends('templates.portfolio.header-footer')
+@extends('templates.portfolio-1.header-footer')
 
 @section('portfolio-template-main-content')
 

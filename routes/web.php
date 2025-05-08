@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\templatesController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\userInfoController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Models\Usersinfo;
 
@@ -33,6 +35,10 @@ Route::get('/admin-panel', function () {
     return view('admin-panel');
 });
 
+Route::get('/web-templates', function (){
+    return view('web-templates');
+});
+
 Route::get('/profile', function () {
     $data = Usersinfo::where('user_id', auth()->id())->get();
     return view('profile_page', ['datas' => $data]);
@@ -54,6 +60,10 @@ Route::get('/about', function(){
 //     return view('templates.portfolio.home');
 // });
 
+Route::get('/templates/portfolio/home', function(){
+    return view('templates.portfolio.home');
+});
+
 Route::get('/templates/portfolio/home', [userInfoController::class, 'showProfile']);
 
 Route::get('/templates/portfolio/about', function(){
@@ -65,3 +75,5 @@ Route::get('/templates/portfolio/contact', function(){
 });
 
 Route::post('/save', [userInfoController::class, 'Save']);
+
+Route::get('/template-{n}', [templatesController::class, 'selectTemplate']);

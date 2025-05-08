@@ -25,9 +25,9 @@ class userInfoController extends Controller
         $isData = Usersinfo::find($request['user_id']);
 
 
-        if($isData){
+        if ($isData) {
 
-            
+
             Usersinfo::where('user_id', $request['user_id'])->update([
                 'title' => $request->title,
                 'intro_text' => $request->intro_text,
@@ -36,8 +36,18 @@ class userInfoController extends Controller
                 'phone' => $request->phone
             ]);
 
-        }
-        else{
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $filename = $image->getClientOriginalName();
+                $destination_path = public_path('images');
+                try {
+                    $image->move($destination_path, $filename);
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
+            }
+
+        } else {
             Usersinfo::create([
                 'title' => $request->title,
                 'intro_text' => $request->intro_text,
@@ -45,8 +55,20 @@ class userInfoController extends Controller
                 'about' => $request->about,
                 'phone' => $request->phone,
                 'user_id' => $request->user_id
-    
+
             ]);
+
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $filename = $image->getClientOriginalName();
+                $destination_path = public_path('images');
+                try {
+                    $image->move($destination_path, $filename);
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
+            }
+
         }
 
 
@@ -73,11 +95,11 @@ class userInfoController extends Controller
         $userPortfolio = Usersinfo::where('user_id', auth()->id())->get();
 
         // Pass the data to a view
-        return view('templates.portfolio.home', ['portfolio' => $userPortfolio]);
+        return view('templates.portfolio-1.home', ['portfolio' => $userPortfolio]);
     }
 
 
-    
+
 
 
 }

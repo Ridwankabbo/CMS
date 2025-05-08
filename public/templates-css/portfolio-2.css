@@ -1,0 +1,149 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* Start header  */
+
+.content{
+    display: grid;
+    grid-template-columns: 15% 85%;
+}
+
+.content .nav-bar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    background: orange;
+}
+
+.content .nav-bar #logo{
+    font-size: 2.5rem;
+    padding: 20px;
+    margin: 20px;
+    color: white;
+}
+
+.content .nav-bar #logo a{
+    color: white;
+    text-decoration: none;
+    font-weight: 800;
+}
+
+/* .content .nav-bar ul{
+    background: blue;
+} */
+
+.content .nav-bar ul li{
+    list-style-type: none;
+    padding: 12px;   
+}
+
+.content .nav-bar ul li a{
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+/* End Header */
+
+/* .................................................. */
+
+/*.................. Home page................... */
+
+
+/* ********* Introduction Details ********** */
+
+#intro-details{
+    height: 600px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#intro-details .intro-text #intro{
+    font-size: 5rem;
+    color: orange;
+    
+}
+
+#intro-details .intro-text #intro span{
+    color: red;
+}
+#intro-details .intro-text #slowgun{
+    color: orange;
+    font-size: 1.5rem;
+}
+
+/* #intro-datails .intro-text #image{} */
+
+/* ****************** End Intro Details ************** */
+
+/* *********************** Skills ******************** */
+
+#skills-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-between; */
+    margin: 50px;
+}
+
+#skills-section #heading{
+    padding: 12px;
+    margin: 20px;
+    text-align: center;
+    color: orange;
+}
+
+#skills-section .skills{
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+/* *********************** End Skills **************** */
+
+/* ****************** Education Section ************* */
+
+#education-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    margin: 50px;
+}
+
+#education-section .heading{
+    color:orange;
+    padding: 12px;
+    margin-bottom: 20px;
+}
+
+#education-section .educated-from{
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+/*.................... Footer ..................  */
+
+#footer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: black;
+    height: 100px;
+    color: white;
+}
+
+#footer .logo a {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 2rem;
+    color: white;
+}
+
