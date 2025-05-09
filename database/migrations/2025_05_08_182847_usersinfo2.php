@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('users_info', function (Blueprint $table) {
             //
             $table->foreignId('template_id')->constrained('templates');
+            
         });
     }
 

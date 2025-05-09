@@ -5,13 +5,13 @@
     <div id="intro-details">
 
         <div class="intro-text">
-            <h1 id="intro"><span>Hi,</span> I'm </h1>
-            <p id="slowgun">Let's make somethis new</p>
+            <h1 id="intro"><span>Hi,</span> I'm {{$portfolio->title}}</h1>
+            <p id="slowgun">{{$portfolio->intro_text}}</p>
 
         </div>
 
         <div id="intro-image">
-            <img src="{{url('images/hello_world.png')}}" alt="Exampla img" height="220px">
+            <img src="{{url('images/users/$portfolio->image')}}" alt="Exampla img" height="220px">
         </div>
 
     </div>

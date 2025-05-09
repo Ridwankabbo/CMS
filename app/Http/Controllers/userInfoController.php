@@ -39,7 +39,7 @@ class userInfoController extends Controller
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $filename = $image->getClientOriginalName();
-                $destination_path = public_path('images');
+                $destination_path = public_path('images/users');
                 try {
                     $image->move($destination_path, $filename);
                 } catch (\Throwable $th) {
@@ -61,7 +61,7 @@ class userInfoController extends Controller
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $filename = $image->getClientOriginalName();
-                $destination_path = public_path('images');
+                $destination_path = public_path('images/users');
                 try {
                     $image->move($destination_path, $filename);
                 } catch (\Throwable $th) {
@@ -92,10 +92,21 @@ class userInfoController extends Controller
     public function showProfile()
     {
         // Get the currently logged-in user's portfolio info
-        $userPortfolio = Usersinfo::where('user_id', auth()->id())->get();
+        $userPortfolios = Usersinfo::where('user_id', auth()->id())->get();
 
-        // Pass the data to a view
-        return view('templates.portfolio-1.home', ['portfolio' => $userPortfolio]);
+
+        if($userPortfolios->isNotEmpty()){
+            $userPortfolio = $userPortfolios->first();
+
+            if($userPortfolio->template_id == "1"){
+                // Pass the data to a view
+                return view('templates.portfolio-1.home', ['portfolio' => $userPortfolio]);
+            }
+            if($userPortfolio->template_id == "2"){
+                // Pass the data to a view
+                return view('templates.portfolio-2.home', ['portfolio' => $userPortfolio]);
+            }
+        }
     }
 
 
