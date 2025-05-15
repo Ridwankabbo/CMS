@@ -13,17 +13,14 @@ return new class extends Migration
     {
         //
 
-        Schema::create('users_info', function(Blueprint $table){
+        Schema::create('admins', function(Blueprint $table){
             $table->id();
-            $table->string('title');
-            $table->string('intro_text');
-            $table->string('image')->nullable();
-            $table->string('about');
-            $table->string('phone');
-            $table->foreignId('user_id')->constrained();
-            $table->timestamps();
-
+            $table->string("name");
+            $table->string('email');
+            $table->string('password');
+            $table->string('image');
         });
+
     }
 
     /**
@@ -32,5 +29,6 @@ return new class extends Migration
     public function down(): void
     {
         //
+        // Schema::dropAllTables('admins');
     }
 };

@@ -20,36 +20,54 @@
 
                             <form action="/save" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <div class="pt-5 pb-5">
-                                    <div class="mb-3 mt-3">
-                                        <label for="logo" class="form-label">Title</label>
-                                        <input type="text" class="form-control form-control-lg" id="title"
-                                            placeholder="Enter title or typography logo" name="title" value="{{$data->title}}">
+
+                                <div class="mb-5 ">
+                                    <label for="logo" class="form-label">Title</label>
+                                    <input type="text" class="form-control form-control-lg" id="title"
+                                        placeholder="Enter title or typography logo" name="title" value="{{$data->title}}">
 
 
-                                    </div>
-                                    <div class="mb-3 mt-3">
-                                        <label class="form-label">Introduction text</label>
+                                </div>
+                                <div class="mb-5">
+                                    <label class="form-label">Introduction text</label>
 
 
-                                        <textarea class="form-control form-control-lg" name="intro_text"
-                                            placeholder="Enter some introduction text">{{$data->intro_text}}</textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="pwd" class="form-label">Choose your image:</label>
-                                        <input class="form-control form-control-lg" type="file" name="image" width="48" height="48"
-                                            value="{{$data->image}}">
-                                    </div>
+                                    <textarea class="form-control form-control-lg" name="intro_text"
+                                        placeholder="Enter some introduction text">{{$data->intro_text}}</textarea>
+                                </div>
+                                <div class="mb-5">
+                                    <label for="pwd" class="form-label">Choose your image:</label>
+                                    <input class="form-control form-control-lg" type="file" name="image" width="48" height="48"
+                                        value="{{$data->image}}">
                                 </div>
 
-                                <div class="mb-3 mt-3">
+                                <div class="mb-5">
+                                    <label for="pwd" class="form-label">Choose your school image:</label>
+                                    <input class="form-control form-control-lg" type="file" name="school_image" width="48"
+                                        height="48" value="{{$data->image}}">
+                                </div>
+
+                                <div class="mb-5">
+                                    <label for="pwd" class="form-label">Choose your collage image:</label>
+                                    <input class="form-control form-control-lg" type="file" name="collage_image" width="48"
+                                        height="48" value="{{$data->image}}">
+                                </div>
+
+                                <div class="mb-5">
+                                    <label for="pwd" class="form-label">Choose your university image:</label>
+                                    <input class="form-control form-control-lg" type="file" name="university_image" width="48"
+                                        height="48" value="{{$data->image}}">
+                                </div>
+
+
+                                <div class="mb-5">
                                     <label for="email" class="form-label">About Yourself:</label>
 
 
                                     <textarea class="form-control form-control-lg" name="about"
                                         placeholder="Write somethis about yourself">{{$data->about}}</textarea>
                                 </div>
-                                <div class="mb-3 mt-3">
+                                <div class="mb-5">
                                     <label for="logo" class="form-label">Mobile:</label>
                                     <input type="number" class="form-control form-control-lg" id="phone"
                                         placeholder="Enter your number" name="phone" value="{{$data->phone}}">
@@ -67,37 +85,55 @@
                     @else
 
                         <form action="/save" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <div class="pt-5 pb-5">
-                                <div class="mb-3 mt-3">
-                                    <label for="logo" class="form-label">Title</label>
-                                    <input type="text" class="form-control form-control-lg" id="title"
-                                        placeholder="Enter title or typography logo" name="title">
+                            {{-- @csrf --}}
+
+                            <div class="mb-5">
+                                <label for="logo" class="form-label">Title</label>
+                                <input type="text" class="form-control form-control-lg" id="title"
+                                    placeholder="Enter title or typography logo" name="title">
 
 
-                                </div>
-                                <div class="mb-3 mt-3">
-                                    <label class="form-label">Introduction text</label>
+                            </div>
+                            <div class="mb-5">
+                                <label class="form-label">Introduction text</label>
 
 
-                                    <textarea class="form-control form-control-lg" name="intro_text"
-                                        placeholder="Enter some introduction text"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="pwd" class="form-label">Choose your image:</label>
-                                    <input class="form-control form-control-lg" type="file" name="image" width="48" height="48"
-                                        value="">
-                                </div>
+                                <textarea class="form-control form-control-lg" name="intro_text"
+                                    placeholder="Enter some introduction text"></textarea>
+                            </div>
+                            <div class="mb-5">
+                                <label for="pwd" class="form-label">Choose your image:</label>
+                                <input class="form-control form-control-lg" type="file" name="image" width="48" height="48"
+                                    value="">
                             </div>
 
-                            <div class="mb-3 mt-3">
+                            <div class="mb-5">
+                                <label for="pwd" class="form-label">Choose your school image:</label>
+                                <input class="form-control form-control-lg" type="file" name="school_image" width="48" height="48"
+                                    value="">
+                            </div>
+
+                            <div class="mb-5">
+                                <label for="pwd" class="form-label">Choose your collage image:</label>
+                                <input class="form-control form-control-lg" type="file" name="collage_image" width="48" height="48"
+                                    value="">
+                            </div>
+
+                            <div class="mb-5">
+                                <label for="pwd" class="form-label">Choose your  univesity image:</label>
+                                <input class="form-control form-control-lg" type="file" name="university_image" width="48" height="48"
+                                    value="">
+                            </div>
+
+
+                            <div class="mb-5">
                                 <label for="email" class="form-label">About Yourself:</label>
 
 
                                 <textarea class="form-control form-control-lg" name="about"
                                     placeholder="Write somethis about yourself"></textarea>
                             </div>
-                            <div class="mb-3 mt-3">
+                            <div class="mb-5">
                                 <label for="logo" class="form-label">Mobile:</label>
                                 <input type="number" class="form-control form-control-lg" id="email"
                                     placeholder="Enter your number" name="phone" value="">

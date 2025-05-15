@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::table('users_info', function (Blueprint $table) {
             //
             $table->foreignId('template_id')->constrained('templates');
+            $table->string('school_img')->nullable();
+            $table->string('collage_img')->nullable();
+            $table->string('university_img')->nullable();
             
         });
     }

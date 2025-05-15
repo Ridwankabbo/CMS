@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admins;
 use App\Models\User;
 use App\Models\Usersinfo;
 use Illuminate\Http\Request;
@@ -41,7 +42,7 @@ class userController extends Controller
         $user = User::create($inCommingFields);
         auth()->login($user);
 
-        $user_data = Usersinfo::where('user_id', auth()->id())->get();
+        //$user_data = Usersinfo::where('user_id', auth()->id())->get();
         return redirect('/profile');
        
     }
@@ -50,5 +51,28 @@ class userController extends Controller
     function logOut()   {
         auth()->logout();
         return redirect('/');
+    }
+
+    function adminController(Request $request){
+        $incommingFields = $request->validate([
+            'email' => 'required', 
+            'password' => 'required'
+        ]);
+
+        $value = Admins::where('email', $incommingFields['email'])->get();
+
+        if($value){
+            $value = $value->first();
+            if($value->email == $incommingFields['email'] && $value->password == $incommingFields['password']){
+                // $request->session()->regenerate();
+                //auth()->login($value);
+                return redirect('/admin-panel');
+                
+            }
+            else{
+                return redirect('/admin-login');
+            }
+        }
+
     }
 }

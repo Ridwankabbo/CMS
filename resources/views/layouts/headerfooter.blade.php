@@ -13,7 +13,7 @@
         
             <div class="  container-fluid ">
                 <a class="navbar-brand" href="/">
-                <img src="{{url('images/logo.jpg')}}" alt="Avatar Logo" style="height:110px; width:110px;" class="rounded-pill"> 
+                <img src="{{url('images/asset/logo.jpg')}}" alt="Avatar Logo" style="height:110px; width:110px;" class="rounded-pill"> 
                 </a>
                 <h1 class=" text-primary m-4 text-dark">Site Builder</h1>
             </div>

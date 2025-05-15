@@ -21,7 +21,10 @@ class Usersinfo extends Model
         'about',
         'phone',
         'user_id',
-        'template_id'
+        'template_id',
+        'school_img',
+        'collage_img',
+        'university_img'
     ];
 
     protected $hidden = [

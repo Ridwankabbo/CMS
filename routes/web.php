@@ -3,7 +3,7 @@
 use App\Http\Controllers\templatesController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\userInfoController;
-use App\Models\User;
+use App\Models\Admins;
 use Illuminate\Support\Facades\Route;
 use App\Models\Usersinfo;
 
@@ -31,13 +31,21 @@ Route::get('/contact', function () {
     return view('contact-page');
 });
 
-Route::get('/admin-panel', function () {
-    return view('admin-panel');
+Route::get('/admin-login', function(){
+    return view('admin-login');
 });
+
+Route::get('/admin-panel', function () {
+    $admin_datas = Admins::where('id', auth()->id())->get();
+    return view('admin-panel', [ "admin_datas" => $admin_datas]);
+});
+
+Route::post('/admin-panel-action', [userController::class, 'adminController']);
 
 Route::get('/web-templates', function (){
     return view('web-templates');
 });
+
 
 Route::get('/profile', function () {
     $data = Usersinfo::where('user_id', auth()->id())->get();
@@ -60,19 +68,19 @@ Route::get('/about', function(){
 //     return view('templates.portfolio.home');
 // });
 
-Route::get('/templates/portfolio/home', function(){
-    return view('templates.portfolio.home');
-});
+// Route::get('/templates/portfolio/index', function(){
+//     return view('templates.portfolio-3.index');
+// });
 
 Route::get('/templates/portfolio/home', [userInfoController::class, 'showProfile']);
 
-Route::get('/templates/portfolio/about', function(){
-    return view('templates.portfolio.about');
-});
+// Route::get('/templates/portfolio/about', function(){
+//     return view('templates.portfolio.about');
+// });
 
-Route::get('/templates/portfolio/contact', function(){
-    return view('templates.portfolio.contact');
-});
+// Route::get('/templates/portfolio/contact', function(){
+//     return view('templates.portfolio.contact');
+// });
 
 Route::post('/save', [userInfoController::class, 'Save']);
 
