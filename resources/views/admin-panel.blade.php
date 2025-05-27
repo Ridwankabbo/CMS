@@ -8,7 +8,7 @@
 
             @foreach ($admin_datas as $data)
 
-                <header class="bg-white rounded-md shadow-md p-4 mb-6 flex justify-between items-center">
+                {{-- <header class="bg-white rounded-md shadow-md p-4 mb-6 flex justify-between items-center">
                     <h1 class="text-2xl font-semibold">Dashboard</h1>
                     <div class="user-profile flex items-center space-x-4">
                         <span class="text-gray-700">Welcome, {{$admin_data->name}}</span>
@@ -16,7 +16,7 @@
                         <a href="/logout" id="logout-button"
                             class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition duration-300">Logout</a>
                     </div>
-                </header>
+                </header> --}}
 
                 <div class="content">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">

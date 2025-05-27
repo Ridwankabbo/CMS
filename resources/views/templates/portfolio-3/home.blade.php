@@ -22,13 +22,13 @@
         <h2>Projects</h2>
         <div class="projects">
             <div class="project-card">
-                <h3>Project 1</h3>
                 <p>A brief description of Project 1. This project was built using HTML, CSS, and JavaScript.</p>
+                <h3>Project 1</h3>
                 <a href="#">View Project</a>
             </div>
             <div class="project-card">
-                <h3>Project 2</h3>
                 <p>A description of Project 2. This project was a Laravel project.</p>
+                <h3>Project 2</h3>
                 <a href="#">View Project</a>
             </div>
             <div class="project-card">

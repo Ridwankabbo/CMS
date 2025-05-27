@@ -4,6 +4,8 @@ use App\Http\Controllers\templatesController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\userInfoController;
 use App\Models\Admins;
+use App\Models\Usersprojects;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Models\Usersinfo;
 
@@ -36,7 +38,8 @@ Route::get('/admin-login', function(){
 });
 
 Route::get('/admin-panel', function () {
-    $admin_datas = Admins::where('id', auth()->id())->get();
+    // $admin_datas = Admins::where('id', auth()->id())->get();
+    $admin_datas = DB::table('admins')->where('id', auth()->id())->get();
     return view('admin-panel', [ "admin_datas" => $admin_datas]);
 });
 
@@ -48,8 +51,9 @@ Route::get('/web-templates', function (){
 
 
 Route::get('/profile', function () {
-    $data = Usersinfo::where('user_id', auth()->id())->get();
-    return view('profile_page', ['datas' => $data]);
+    $datas = Usersinfo::where('user_id', auth()->id())->get();
+    $projectsdata = Usersprojects::where('user_id', auth()->id())->get();
+    return view('profile_page', compact('datas', 'projectsdata'));
 });
 
 Route::get('/logout', [userController::class, 'logOut']);

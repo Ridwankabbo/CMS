@@ -13,13 +13,13 @@
                     <!-- To make this form functional, sign up at-->
                     <!-- https://startbootstrap.com/solution/contact-forms-->
                     <!-- to get an API token!-->
-                    @if(count($datas) > 0)
-
-                        @foreach ($datas as $data)
 
 
-                            <form action="/save" method="post" enctype="multipart/form-data">
-                                @csrf
+                    <form action="/save" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @if($datas->isNotEmpty())
+
+                            @foreach ($datas as $data)
 
                                 <div class="mb-5 ">
                                     <label for="logo" class="form-label">Title</label>
@@ -74,18 +74,27 @@
 
                                 </div>
 
-                                <div class="d-grid">
-                                    <Button class="btn btn-lg text-white bg-dark" id="submitButton" type="submit">save</Button>
+
+                            @endforeach
+
+                            @foreach ($projectsdata as $projectdata)
+
+                                <div class="mb-5">
+                                    <label for="project_name" class="form-label">Add new project</label>
+                                    <input class="form-control form-control-lg mb-4" name="project_name" type="text"
+                                        value="{{$projectdata->project_name}}" placeholder="project name">
+                                    <label for="porject_image">Enter project logo or image</label>
+                                    <input class="form-control form-control-lg mb-4" type="file" name="project_image" width="48"
+                                        height="48">
+                                    <label for="project_git_url">Enter project git or domail url</label>
+                                    <input type="text" class="form-control form-control-lg mb-4"
+                                        value="{{$projectdata->project_git_url}}" name="project_git_url">
+
                                 </div>
 
-                            </form>
+                            @endforeach
 
-                        @endforeach
-
-                    @else
-
-                        <form action="/save" method="post" enctype="multipart/form-data">
-                            {{-- @csrf --}}
+                        @else
 
                             <div class="mb-5">
                                 <label for="logo" class="form-label">Title</label>
@@ -109,20 +118,20 @@
 
                             <div class="mb-5">
                                 <label for="pwd" class="form-label">Choose your school image:</label>
-                                <input class="form-control form-control-lg" type="file" name="school_image" width="48" height="48"
-                                    value="">
+                                <input class="form-control form-control-lg" type="file" name="school_image" width="48"
+                                    height="48" value="">
                             </div>
 
                             <div class="mb-5">
                                 <label for="pwd" class="form-label">Choose your collage image:</label>
-                                <input class="form-control form-control-lg" type="file" name="collage_image" width="48" height="48"
-                                    value="">
+                                <input class="form-control form-control-lg" type="file" name="collage_image" width="48"
+                                    height="48" value="">
                             </div>
 
                             <div class="mb-5">
-                                <label for="pwd" class="form-label">Choose your  univesity image:</label>
-                                <input class="form-control form-control-lg" type="file" name="university_image" width="48" height="48"
-                                    value="">
+                                <label for="pwd" class="form-label">Choose your univesity image:</label>
+                                <input class="form-control form-control-lg" type="file" name="university_image" width="48"
+                                    height="48" value="">
                             </div>
 
 
@@ -140,14 +149,27 @@
 
                             </div>
 
-                            <div class="d-grid">
-                                <Button class="btn btn-lg text-white bg-dark" id="submitButton" type="submit">save</Button>
+                            <div class="mb-5">
+                                <label for="project_name" class="form-label">Add new project</label>
+                                <input class="form-control form-control-lg mb-4" name="project_name" type="text"
+                                    name="project_image" placeholder="project name">
+                                <label for="porject_image">Enter project logo or image</label>
+                                <input class="form-control form-control-lg mb-4" type="file" name="project_image" width="48"
+                                    height="48">
+                                <label for="project_git_url">Enter project git or domail url</label>
+                                <input type="text" class="form-control form-control-lg mb-4" name="project_git_url">
+
                             </div>
 
-                        </form>
+                            <div class="d-grid">
+                                <Button class="btn btn-lg text-white bg-dark" id="submitButton" type="submit">save</Button>
+
+                            </div>
+
+                        @endif
 
 
-                    @endif
+                    </form>
 
                     <div class="mt-5">
                         <a href="http://localhost:8000/templates/portfolio/home" target="_blank"

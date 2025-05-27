@@ -64,9 +64,15 @@ class userController extends Controller
         if($value){
             $value = $value->first();
             if($value->email == $incommingFields['email'] && $value->password == $incommingFields['password']){
-                // $request->session()->regenerate();
-                //auth()->login($value);
+                // $request->session()->start();
+                // auth()->login($value);
+                
+                
                 return redirect('/admin-panel');
+
+                // $datas = Admins::where('id', $value->email)->get();
+
+                // return view('admin-panel', ['datas'=> $datas]);
                 
             }
             else{

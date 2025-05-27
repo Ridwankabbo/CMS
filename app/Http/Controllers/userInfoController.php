@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Templates;
 use App\Models\Usersinfo;
+use App\Models\Usersprojects;
 use Illuminate\Http\Request;
+use Str;
 
 class userInfoController extends Controller
 {
@@ -19,16 +21,16 @@ class userInfoController extends Controller
 
         //Used for data validation testing
 
-        $request->validate([
-            // 'title' => 'required',
-            // 'intro_text' => 'required',
-            // 'image' => 'required',
-            // 'school_image' =>'required',
-            // 'collage_image' => 'required',
-            // 'university_image' => 'required',
-            // 'about' => 'required',
-            // 'phone' => 'required'
-        ]);
+        // $request->validate([
+        //     // 'title' => 'required',
+        //     // 'intro_text' => 'required',
+        //     // 'image' => 'required',
+        //     // 'school_image' =>'required',
+        //     // 'collage_image' => 'required',
+        //     // 'university_image' => 'required',
+        //     // 'about' => 'required',
+        //     // 'phone' => 'required'
+        // ]);
 
 
         //add loged user id to 'request' array variavle 
@@ -37,37 +39,95 @@ class userInfoController extends Controller
 
         // check that the loguser has data or not
         $isData = Usersinfo::find($request['user_id']);
+        $isProjectData = Usersprojects::find($request['user_id']);
 
+
+        $university_img_fullName = $collage_img_fullName = $school_img_fullName = $user_img_fullName = $project_img_fullName = "";
+        $destination_path = public_path('images/users/');
 
         if ($isData) {
-            $university_image_fileName = $collage_img_fileName = $school_img_fileName =$user_img_fileName = "";
+
 
             // getting images that are dequired 
 
-            if($request->hasFile('image') && $request->hasFile('school_image') && $request->hasFile('collage_image') && $request->hasFile('university_image')) {
+            if ($request->hasFile('image')) {
                 $image = $request->file('image');
+                $user_img_extention = $image->getClientOriginalExtension();
+                $user_img_fileName = Str::random(15);
+                $user_img_fullName = "$user_img_fileName" . '.' . "$user_img_extention";
+                $image->move($destination_path, $user_img_fullName);
+            }
+
+
+            if ($request->hasFile('school_image')) {
                 $school_img = $request->file('school_image');
+                $school_img_extention = $school_img->getClientOriginalExtension();
+                $school_img_fileName = Str::random(15);
+                $school_img_fullName = "$school_img_fileName" . '.' . "$school_img_extention";
+                $school_img->move($destination_path, $school_img_fullName);
+            }
+
+            if ($request->hasFile('collage_image')) {
+
                 $collage_img = $request->file('collage_image');
+                $collage_img_extention = $collage_img->getClientOriginalExtension();
+                $collage_img_fileName = Str::random(15);
+                $collage_img_fullName = "$collage_img_fileName" . '.' . "$collage_img_extention";
+                $collage_img->move($destination_path, $collage_img_fullName);
+            }
+
+            if ($request->hasFile('university_image')) {
+                # code...
                 $university_img = $request->file('university_image');
-                $user_img_fileName = $image->getClientOriginalName();
-                $school_img_fileName = $school_img->getClientOriginalName();
-                $collage_img_fileName = $collage_img->getClientOriginalName();
-                $university_image_fileName = $university_img->getClientOriginalName();
-                $destination_path = public_path('images/users/');
-               
-                
+                $university_img_extention = $university_img->getClientOriginalExtension();
+                $university_img_fileName = Str::random(15);
+                $university_img_fullName = "$university_img_fileName" . '.' . "$university_img_extention";
 
-                try {
+                $university_img->move($destination_path, $university_img_fullName);
+            }
 
-                    // Moving images into a file
+            // if ($request->hasFile('project_image')) {
+            //     $project_img = $request->file('project_image');
+            //     $project_img_extention = $project_img->getClientOriginalExtension();
+            //     $project_img_fileName = Str::random(15);
+            //     $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
+            // }
 
-                    $image->move($destination_path, $user_img_fileName);
-                    $school_img->move($destination_path, $school_img_fileName);
-                    $collage_img->move($destination_path, $collage_img_fileName);
-                    $university_img->move($destination_path, $university_image_fileName);
-                } catch (\Throwable $th) {
-                    //throw $th;
+            if ($isProjectData) {
+
+
+                if ($request->hasFile('project_image')) {
+                    $project_img = $request->file('project_image');
+                    $project_img_extention = $project_img->getClientOriginalExtension();
+                    $project_img_fileName = Str::random(15);
+                    $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
+                    $project_img->move($destination_path, $project_img_fullName);
+                    
                 }
+
+                Usersprojects::where('user_id', $request['user_id'])->update([
+                    'project_name' => $request->project_name,
+                    'project_img' => $project_img_fullName,
+                    'project_git_url' => $request->project_git_url,
+                    'user_id' => $request->user_id
+                ]);
+            } else {
+
+                if ($request->hasFile('project_image')) {
+                    $project_img = $request->file('project_image');
+                    $project_img_extention = $project_img->getClientOriginalExtension();
+                    $project_img_fileName = Str::random(15);
+                    $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
+                    $project_img->move($destination_path, $project_img_fullName);
+                }
+
+                Usersprojects::create([
+                    'project_name' => $request->project_name,
+                    'project_img' => $project_img_fullName,
+                    'project_git_url' => $request->project_git_url,
+                    'user_id' => $request->user_id
+                ]);
+
             }
 
 
@@ -76,58 +136,109 @@ class userInfoController extends Controller
             Usersinfo::where('user_id', $request['user_id'])->update([
                 'title' => $request->title,
                 'intro_text' => $request->intro_text,
-                'image' => $user_img_fileName,
-                'school_img' => $school_img_fileName,
-                'collage_img' => $collage_img_fileName,
-                'university_img' => $university_image_fileName,
+                'image' => $user_img_fullName,
+                'school_img' => $school_img_fullName,
+                'collage_img' => $collage_img_fullName,
+                'university_img' => $university_img_fullName,
                 'about' => $request->about,
                 'phone' => $request->phone
             ]);
 
-            
+            // Usersprojects::where('user_id', $request['user_id'])->update([
+            //     'project_name' => $request->project_name,
+            //     'project_img' => $request->project_img_fullName,
+            //     'project_git_url' => $request->project_get_url
+            // ]);
+
+
 
         } else {
 
-            $university_image_fileName = $collage_img_fileName = $school_img_fileName =$user_img_fileName = "";
 
 
             // getting images that are dequired 
 
-            if ($request->hasFile('image') && $request->hasFile('school_image') && $request->hasFile('collage_image') && $request->hasFile('university_image')) {
+            // if ($request->hasFile('image') || $request->hasFile('school_image') || $request->hasFile('collage_image') || $request->hasFile('university_image')) {
+            //     $image = $request->file('image');
+            //     $school_img = $request->file('school_image');
+            //     $collage_img = $request->file('collage_image');
+            //     $university_img = $request->file('university_image');
+            //     $user_img_fileName = $image->getClientOriginalName();
+            //     $school_img_fileName = $school_img->getClientOriginalName();
+            //     $collage_img_fileName = $collage_img->getClientOriginalName();
+            //     $university_image_fileName = $university_img->getClientOriginalName();
+            //     $destination_path = public_path('images/users');
+            //     try {
+            //         $image->move($destination_path, $user_img_fileName);
+            //         $school_img->move($destination_path, $school_img_fileName);
+            //         $collage_img->move($destination_path, $collage_img_fileName);
+            //         $university_img->move($destination_path, $university_image_fileName);
+            //     } catch (\Throwable $th) {
+            //         //throw $th;
+            //     }
+            // }
+
+            if ($request->hasFile('image')) {
                 $image = $request->file('image');
-                $school_img = $request->file('school_image');
-                $collage_img = $request->file('collage_image');
-                $university_img = $request->file('university_image');
-                $user_img_fileName = $image->getClientOriginalName();
-                $school_img_fileName = $school_img->getClientOriginalName();
-                $collage_img_fileName = $collage_img->getClientOriginalName();
-                $university_image_fileName = $university_img->getClientOriginalName();
-                $destination_path = public_path('images/users');
-                try {
-                    $image->move($destination_path, $user_img_fileName);
-                    $school_img->move($destination_path, $school_img_fileName);
-                    $collage_img->move($destination_path, $collage_img_fileName);
-                    $university_img->move($destination_path, $university_image_fileName);
-                } catch (\Throwable $th) {
-                    //throw $th;
-                }
+                $user_img_extention = $image->getClientOriginalExtension();
+                $user_img_fileName = Str::random(15);
+                $user_img_fullName = "$user_img_fileName" . '.' . "$user_img_extention";
+                $image->move($destination_path, $user_img_fullName);
             }
+
+            if ($request->hasFile('school_image')) {
+                $school_img = $request->file('school_image');
+                $school_img_extention = $school_img->getClientOriginalExtension();
+                $school_img_fileName = Str::random(15);
+                $school_img_fullName = "$school_img_fileName" . '.' . "$school_img_extention";
+                $school_img->move($destination_path, $school_img_fullName);
+            }
+
+            if ($request->hasFile('collage_image')) {
+
+                $collage_img = $request->file('collage_image');
+                $collage_img_extention = $collage_img->getClientOriginalExtension();
+                $collage_img_fileName = Str::random(15);
+                $collage_img_fullName = "$collage_img_fileName" . '.' . "$collage_img_extention";
+                $collage_img->move($destination_path, $collage_img_fullName);
+            }
+
+            if ($request->hasFile('university_image')) {
+                # code...
+                $university_img = $request->file('university_image');
+                $university_img_extention = $university_img->getClientOriginalExtension();
+                $university_img_fileName = Str::random(15);
+                $university_img_fullName = "$university_img_fileName" . '.' . "$university_img_extention";
+
+                $university_img->move($destination_path, $university_img_fullName);
+            }
+
+            if ($request->hasFile('project_image')) {
+                $project_img = $request->file('project_image');
+                $project_img_extention = $project_img->getClientOriginalExtension();
+                $project_img_fileName = Str::random(15);
+                $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
+            }
+
+
+
 
             // if  there was no data then add the new data
 
             Usersinfo::create([
                 'title' => $request->title,
                 'intro_text' => $request->intro_text,
-                'image' => $user_img_fileName,
-                'school_img' => $school_img_fileName,
-                'collage_img' => $collage_img_fileName,
-                'university_img' => $university_image_fileName,
+                'image' => $user_img_fullName,
+                'school_img' => $school_img_fullName,
+                'collage_img' => $collage_img_fullName,
+                'university_img' => $university_img_fullName,
                 'about' => $request->about,
                 'phone' => $request->phone
 
             ]);
 
-            
+
+
 
         }
 
@@ -161,19 +272,19 @@ class userInfoController extends Controller
         $userPortfolios = Usersinfo::where('user_id', auth()->id())->get();
 
 
-        if($userPortfolios->isNotEmpty()){
+        if ($userPortfolios->isNotEmpty()) {
+
+            // Get the selected template id
             $userPortfolio = $userPortfolios->first();
             $template = Templates::where('id', $userPortfolio->template_id)->first();
 
-
-
             //Updated method
 
-            if($template){
+            if ($template) {
 
-                // return the template view with data
+                // return the selected template view with data
+                return view('templates/' . "$template->template_name" . '/home', ['portfolio' => $userPortfolio]);
 
-                return view('templates/'."$template->template_name".'/home', ['portfolio' => $userPortfolio]);
             }
 
 

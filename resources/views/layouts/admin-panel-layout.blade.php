@@ -63,6 +63,7 @@
                 </ul>
             </nav>
         </aside>
+        
 
         @yield('dashboard-section-body')
     </div>
