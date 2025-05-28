@@ -5,13 +5,13 @@
     <div id="intro-details">
 
         <div class="intro-text">
-            <h1 id="intro"><span>Hi,</span> I'm {{$portfolio->title}}</h1>
-            <p id="slowgun">{{$portfolio->intro_text}}</p>
+            <h1 id="intro"><span>Hi,</span> I'm {{$userPortfolio->title}}</h1>
+            <p id="slowgun">{{$userPortfolio->intro_text}}</p>
 
         </div>
 
         <div id="intro-image">
-            <img src="{{url("images/users/$portfolio->image")}}" alt="Example img" height="220px">
+            <img src="{{url("images/users/$userPortfolio->image")}}" alt="Example img" height="220px">
         </div>
 
     </div>
@@ -51,19 +51,19 @@
 
             <div class="card" style="width: 18rem;">
                 <div class="card-body text-center">
-                    <img src="{{url("images/users/$portfolio->school_img")}}" alt="">
+                    <img src="{{url("images/users/$userPortfolio->school_img")}}" alt="">
                     <h5 class="card-title p-4">School</h5>
                 </div>
             </div>
             <div class="card" style="width: 18rem;">
                 <div class="card-body text-center">
-                    <img src="{{url("images/users/$portfolio->collage_img")}}" alt="">
+                    <img src="{{url("images/users/$userPortfolio->collage_img")}}" alt="">
                     <h5 class="card-title p-4 ">Collage</h5>
                 </div>
             </div>
             <div class="card" style="width: 18rem;">
                 <div class="card-body text-center">
-                    <img src="{{url("images/users/$portfolio->university_img")}}" alt="">
+                    <img src="{{url("images/users/$userPortfolio->university_img")}}" alt="">
                     <h5 class="card-title p-4 ">University</h5>
                 </div>
             </div>

@@ -233,7 +233,9 @@ class userInfoController extends Controller
                 'collage_img' => $collage_img_fullName,
                 'university_img' => $university_img_fullName,
                 'about' => $request->about,
-                'phone' => $request->phone
+                'phone' => $request->phone,
+                'user_id' => $request->user_id,
+                'template_id' => 1
 
             ]);
 
@@ -270,20 +272,23 @@ class userInfoController extends Controller
     {
         // Get the currently logged-in user's portfolio info
         $userPortfolios = Usersinfo::where('user_id', auth()->id())->get();
+        $usersProjects = Usersprojects::where('user_id', auth()->id())->get();
 
 
         if ($userPortfolios->isNotEmpty()) {
 
             // Get the selected template id
             $userPortfolio = $userPortfolios->first();
+            $usersproject = $usersProjects->first();
             $template = Templates::where('id', $userPortfolio->template_id)->first();
+
 
             //Updated method
 
             if ($template) {
 
                 // return the selected template view with data
-                return view('templates/' . "$template->template_name" . '/home', ['portfolio' => $userPortfolio]);
+                return view('templates/' . "$template->template_name" . '/home', compact('userPortfolio', 'usersproject'));
 
             }
 
