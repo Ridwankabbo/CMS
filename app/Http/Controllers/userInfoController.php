@@ -56,7 +56,14 @@ class userInfoController extends Controller
                 $user_img_fileName = Str::random(15);
                 $user_img_fullName = "$user_img_fileName" . '.' . "$user_img_extention";
                 $image->move($destination_path, $user_img_fullName);
+
+
+                Usersinfo::where('user_id', $request['user_id'])->update([
+                    'image' => $user_img_fullName
+                ]);
+
             }
+            ;
 
 
             if ($request->hasFile('school_image')) {
@@ -65,6 +72,14 @@ class userInfoController extends Controller
                 $school_img_fileName = Str::random(15);
                 $school_img_fullName = "$school_img_fileName" . '.' . "$school_img_extention";
                 $school_img->move($destination_path, $school_img_fullName);
+
+
+
+                Usersinfo::where('user_id', $request['user_id'])->update([
+                    'school_img' => $school_img_fullName,
+                ]);
+
+
             }
 
             if ($request->hasFile('collage_image')) {
@@ -74,6 +89,15 @@ class userInfoController extends Controller
                 $collage_img_fileName = Str::random(15);
                 $collage_img_fullName = "$collage_img_fileName" . '.' . "$collage_img_extention";
                 $collage_img->move($destination_path, $collage_img_fullName);
+
+
+
+                Usersinfo::where('user_id', $request['user_id'])->update([
+                    'collage_img' => $collage_img_fullName
+
+                ]);
+
+
             }
 
             if ($request->hasFile('university_image')) {
@@ -84,6 +108,13 @@ class userInfoController extends Controller
                 $university_img_fullName = "$university_img_fileName" . '.' . "$university_img_extention";
 
                 $university_img->move($destination_path, $university_img_fullName);
+
+
+                Usersinfo::where('user_id', $request['user_id'])->update([
+                    'university_img' => $university_img_fullName
+                ]);
+
+
             }
 
             // if ($request->hasFile('project_image')) {
@@ -102,7 +133,7 @@ class userInfoController extends Controller
                     $project_img_fileName = Str::random(15);
                     $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
                     $project_img->move($destination_path, $project_img_fullName);
-                    
+
                 }
 
                 Usersprojects::where('user_id', $request['user_id'])->update([
@@ -136,12 +167,15 @@ class userInfoController extends Controller
             Usersinfo::where('user_id', $request['user_id'])->update([
                 'title' => $request->title,
                 'intro_text' => $request->intro_text,
-                'image' => $user_img_fullName,
-                'school_img' => $school_img_fullName,
-                'collage_img' => $collage_img_fullName,
-                'university_img' => $university_img_fullName,
                 'about' => $request->about,
-                'phone' => $request->phone
+                'phone' => $request->phone,
+
+                // For updating images
+
+                // 'image' => $user_img_fullName,
+                // 'school_img' => $school_img_fullName,
+                // 'collage_img' => $collage_img_fullName,
+                // 'university_img' => $university_img_fullName,
             ]);
 
             // Usersprojects::where('user_id', $request['user_id'])->update([
@@ -218,6 +252,45 @@ class userInfoController extends Controller
                 $project_img_extention = $project_img->getClientOriginalExtension();
                 $project_img_fileName = Str::random(15);
                 $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
+            }
+
+
+
+            if ($isProjectData == false) {
+
+
+                if ($request->hasFile('project_image')) {
+                    $project_img = $request->file('project_image');
+                    $project_img_extention = $project_img->getClientOriginalExtension();
+                    $project_img_fileName = Str::random(15);
+                    $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
+                    $project_img->move($destination_path, $project_img_fullName);
+
+                }
+
+                Usersprojects::where('user_id', $request['user_id'])->update([
+                    'project_name' => $request->project_name,
+                    'project_img' => $project_img_fullName,
+                    'project_git_url' => $request->project_git_url,
+                    'user_id' => $request->user_id
+                ]);
+            } else {
+
+                if ($request->hasFile('project_image')) {
+                    $project_img = $request->file('project_image');
+                    $project_img_extention = $project_img->getClientOriginalExtension();
+                    $project_img_fileName = Str::random(15);
+                    $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
+                    $project_img->move($destination_path, $project_img_fullName);
+                }
+
+                Usersprojects::create([
+                    'project_name' => $request->project_name,
+                    'project_img' => $project_img_fullName,
+                    'project_git_url' => $request->project_git_url,
+                    'user_id' => $request->user_id
+                ]);
+
             }
 
 
@@ -305,6 +378,31 @@ class userInfoController extends Controller
             //     return view('templates.portfolio-2.home', ['portfolio' => $userPortfolio]);
             // }
         }
+    }
+
+
+    function addNewProject(Request $request)
+    {
+        $request['user_id'] = auth()->id();
+        $destination_path = public_path('images/users/');
+
+        if ($request->hasFile('project_image')) {
+            $project_img = $request->file('project_image');
+            $project_img_extention = $project_img->getClientOriginalExtension();
+            $project_img_fileName = Str::random(15);
+            $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
+            $project_img->move($destination_path, $project_img_fullName);
+        }
+
+        Usersprojects::create([
+            'user_id' => $request->user_id,
+            'project_name' => $request->project_name,
+            'project_img' => $project_img_fullName,
+            'project_git_url' => $request->project_git_url
+        ]);
+
+        return redirect('/user-projects');
+
     }
 
 

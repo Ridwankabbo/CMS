@@ -52,8 +52,13 @@ Route::get('/web-templates', function (){
 
 Route::get('/profile', function () {
     $datas = Usersinfo::where('user_id', auth()->id())->get();
+    // $projectsdata = Usersprojects::where('user_id', auth()->id())->get();
+    return view('profile_page', compact('datas'));
+});
+
+Route::get('/user-projects', function(){
     $projectsdata = Usersprojects::where('user_id', auth()->id())->get();
-    return view('profile_page', compact('datas', 'projectsdata'));
+    return view('projects', compact('projectsdata'));
 });
 
 Route::get('/logout', [userController::class, 'logOut']);
@@ -87,5 +92,6 @@ Route::get('/templates/portfolio/home', [userInfoController::class, 'showProfile
 // });
 
 Route::post('/save', [userInfoController::class, 'Save']);
+Route::post('add-new-project',[userInfoController::class, 'addNewProject']);
 
 Route::get('/template-{n}', [templatesController::class, 'selectTemplate']);

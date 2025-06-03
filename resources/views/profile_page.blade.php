@@ -21,65 +21,79 @@
 
                             @foreach ($datas as $data)
 
-                                <div class="mb-5 ">
-                                    <label for="logo" class="form-label">Title</label>
-                                    <input type="text" class="form-control form-control-lg" id="title"
-                                        placeholder="Enter title or typography logo" name="title" value="{{$data->title}}">
+                                <input type="checkbox" id="intro-checkbox" onclick="disableIntro()">
+                                <label for="intro-checkbox">Do you want to add intro to your website</label>
+                                <div id="intro-section">
+                                    <div class="mb-5 ">
+                                        <label for="logo" class="form-label">Title</label>
+                                        <input type="text" class="form-control form-control-lg" id="title"
+                                            placeholder="Enter title or typography logo" name="title"  value="{{$data->title}}">
 
 
-                                </div>
-                                <div class="mb-5">
-                                    <label class="form-label">Introduction text</label>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label class="form-label">Introduction text</label>
 
 
-                                    <textarea class="form-control form-control-lg" name="intro_text"
-                                        placeholder="Enter some introduction text">{{$data->intro_text}}</textarea>
-                                </div>
-                                <div class="mb-5">
-                                    <label for="pwd" class="form-label">Choose your image:</label>
-                                    <input class="form-control form-control-lg" type="file" name="image" width="48" height="48"
-                                        value="{{$data->image}}">
-                                </div>
-
-                                <div class="mb-5">
-                                    <label for="pwd" class="form-label">Choose your school image:</label>
-                                    <input class="form-control form-control-lg" type="file" name="school_image" width="48"
-                                        height="48" value="{{$data->image}}">
+                                        <textarea class="form-control form-control-lg" name="intro_text"
+                                            placeholder="Enter some introduction text">{{$data->intro_text}}</textarea>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="pwd" class="form-label">Choose your image:</label>
+                                        <input class="form-control form-control-lg" type="file" name="image" width="48" height="48"
+                                            value="{{$data->image}}">
+                                    </div>
                                 </div>
 
-                                <div class="mb-5">
-                                    <label for="pwd" class="form-label">Choose your collage image:</label>
-                                    <input class="form-control form-control-lg" type="file" name="collage_image" width="48"
-                                        height="48" value="{{$data->image}}">
+                                <input type="checkbox" id="edu-checkbox">
+                                <label for="edu-checkbox">Do you want to add education section to your website</label>
+                                <div id="edu-section">
+                                    <div class="mb-5">
+                                        <label for="pwd" class="form-label">Choose your school image:</label>
+                                        <input class="form-control form-control-lg" type="file" name="school_image" width="48"
+                                            height="48" value="{{$data->image}}">
+                                    </div>
+
+                                    <div class="mb-5">
+                                        <label for="pwd" class="form-label">Choose your collage image:</label>
+                                        <input class="form-control form-control-lg" type="file" name="collage_image" width="48"
+                                            height="48" value="{{$data->image}}">
+                                    </div>
+
+                                    <div class="mb-5">
+                                        <label for="pwd" class="form-label">Choose your university image:</label>
+                                        <input class="form-control form-control-lg" type="file" name="university_image" width="48"
+                                            height="48" value="{{$data->image}}">
+                                    </div>
                                 </div>
 
-                                <div class="mb-5">
-                                    <label for="pwd" class="form-label">Choose your university image:</label>
-                                    <input class="form-control form-control-lg" type="file" name="university_image" width="48"
-                                        height="48" value="{{$data->image}}">
-                                </div>
+                                <input type="checkbox" id="about-checkbox">
+                                <label for="avout-checkbox">Do you want to add about to your website</label>
+                                <div id="about-section">
+                                    <div class="mb-5">
+                                        <label for="email" class="form-label">About Yourself:</label>
 
 
-                                <div class="mb-5">
-                                    <label for="email" class="form-label">About Yourself:</label>
+                                        <textarea class="form-control form-control-lg" name="about"
+                                            placeholder="Write somethis about yourself">{{$data->about}}</textarea>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="logo" class="form-label">Mobile:</label>
+                                        <input type="number" class="form-control form-control-lg" id="phone"
+                                            placeholder="Enter your number" name="phone" value="{{$data->phone}}">
 
-
-                                    <textarea class="form-control form-control-lg" name="about"
-                                        placeholder="Write somethis about yourself">{{$data->about}}</textarea>
-                                </div>
-                                <div class="mb-5">
-                                    <label for="logo" class="form-label">Mobile:</label>
-                                    <input type="number" class="form-control form-control-lg" id="phone"
-                                        placeholder="Enter your number" name="phone" value="{{$data->phone}}">
-
+                                    </div>
                                 </div>
 
 
                             @endforeach
 
-                            @foreach ($projectsdata as $projectdata)
+                            {{-- @foreach ($projectsdata as $projectdata)
 
-                                <div class="mb-5">
+
+                                <input type="checkbox" id="project-checkbox">
+                                <label for="project-checkbox">Do you want to add project section to your website</label>
+                                <div class="mb-5" id="project-section">
                                     <label for="project_name" class="form-label">Add new project</label>
                                     <input class="form-control form-control-lg mb-4" name="project_name" type="text"
                                         value="{{$projectdata->project_name}}" placeholder="project name">
@@ -92,64 +106,70 @@
 
                                 </div>
 
-                            @endforeach
+                            @endforeach --}}
 
                         @else
 
-                            <div class="mb-5">
-                                <label for="logo" class="form-label">Title</label>
-                                <input type="text" class="form-control form-control-lg" id="title"
-                                    placeholder="Enter title or typography logo" name="title">
+                            <div id="intro-section">
+                                <div class="mb-5">
+                                    <label for="logo" class="form-label">Title</label>
+                                    <input type="text" class="form-control form-control-lg" id="title"
+                                        placeholder="Enter title or typography logo" name="title">
 
 
-                            </div>
-                            <div class="mb-5">
-                                <label class="form-label">Introduction text</label>
+                                </div>
+                                <div class="mb-5">
+                                    <label class="form-label">Introduction text</label>
 
 
-                                <textarea class="form-control form-control-lg" name="intro_text"
-                                    placeholder="Enter some introduction text"></textarea>
-                            </div>
-                            <div class="mb-5">
-                                <label for="pwd" class="form-label">Choose your image:</label>
-                                <input class="form-control form-control-lg" type="file" name="image" width="48" height="48"
-                                    value="">
-                            </div>
-
-                            <div class="mb-5">
-                                <label for="pwd" class="form-label">Choose your school image:</label>
-                                <input class="form-control form-control-lg" type="file" name="school_image" width="48"
-                                    height="48" value="">
+                                    <textarea class="form-control form-control-lg" name="intro_text"
+                                        placeholder="Enter some introduction text"></textarea>
+                                </div>
+                                <div class="mb-5">
+                                    <label for="pwd" class="form-label">Choose your image:</label>
+                                    <input class="form-control form-control-lg" type="file" name="image" width="48" height="48"
+                                        value="">
+                                </div>
                             </div>
 
-                            <div class="mb-5">
-                                <label for="pwd" class="form-label">Choose your collage image:</label>
-                                <input class="form-control form-control-lg" type="file" name="collage_image" width="48"
-                                    height="48" value="">
+                            <div id="edu-section">
+                                <div class="mb-5">
+                                    <label for="pwd" class="form-label">Choose your school image:</label>
+                                    <input class="form-control form-control-lg" type="file" name="school_image" width="48"
+                                        height="48" value="">
+                                </div>
+
+                                <div class="mb-5">
+                                    <label for="pwd" class="form-label">Choose your collage image:</label>
+                                    <input class="form-control form-control-lg" type="file" name="collage_image" width="48"
+                                        height="48" value="">
+                                </div>
+
+                                <div class="mb-5">
+                                    <label for="pwd" class="form-label">Choose your univesity image:</label>
+                                    <input class="form-control form-control-lg" type="file" name="university_image" width="48"
+                                        height="48" value="">
+                                </div>
                             </div>
 
-                            <div class="mb-5">
-                                <label for="pwd" class="form-label">Choose your univesity image:</label>
-                                <input class="form-control form-control-lg" type="file" name="university_image" width="48"
-                                    height="48" value="">
+
+                            <div id="about-section">
+                                <div class="mb-5">
+                                    <label for="email" class="form-label">About Yourself:</label>
+
+
+                                    <textarea class="form-control form-control-lg" name="about"
+                                        placeholder="Write somethis about yourself"></textarea>
+                                </div>
+                                <div class="mb-5">
+                                    <label for="logo" class="form-label">Mobile:</label>
+                                    <input type="number" class="form-control form-control-lg" id="email"
+                                        placeholder="Enter your number" name="phone" value="">
+
+                                </div>
                             </div>
 
-
-                            <div class="mb-5">
-                                <label for="email" class="form-label">About Yourself:</label>
-
-
-                                <textarea class="form-control form-control-lg" name="about"
-                                    placeholder="Write somethis about yourself"></textarea>
-                            </div>
-                            <div class="mb-5">
-                                <label for="logo" class="form-label">Mobile:</label>
-                                <input type="number" class="form-control form-control-lg" id="email"
-                                    placeholder="Enter your number" name="phone" value="">
-
-                            </div>
-
-                            <div class="mb-5">
+                            <div class="mb-5" id="project-section">
                                 <label for="project_name" class="form-label">Add new project</label>
                                 <input class="form-control form-control-lg mb-4" name="project_name" type="text"
                                     name="project_image" placeholder="project name">

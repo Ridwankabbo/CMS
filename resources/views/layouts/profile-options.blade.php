@@ -32,15 +32,17 @@
                         <a href="profile" class="list-group-item list-group-item-action mb-2">Home page content</a>
                         {{-- <a href="resume" class="list-group-item list-group-item-action mb-2">About conctent</a>
                         <a href="contact" class="list-group-item list-group-item-action mb-2">Contact content</a> --}}
+                        <a href="user-projects" class="list-group-item list-group-item-action mb-2">Projects</a>
                         <a href="web-templates" class="list-group-item list-group-item-action mb-2">Templates</a>
                     </div>
 					
 				</div>
 
-				
+				<div class="col-10 pt-3 bg-light rounded-4">
                    @yield('user-options')
                    
-                    {{-- <form action="/save">
+                </div>   
+                   {{-- <form action="/save">
                         @yield('user-options')
                     </form> --}}
                 
@@ -50,6 +52,8 @@
 		</div>
 
 	</div>
+
+    <script src="{{url('js/profileSelectionSection.js')}}"></script>
 
 
 

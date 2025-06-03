@@ -21,13 +21,20 @@
     <section class="section projects" id="projects">
         <h2>Projects</h2>
         @if ($usersproject)
-            <div class="projects">
-                <div class="project-card">
-                    <img src="{{url("images/users/$usersproject->project_img")}}" height="300px" width="300px" alt="">
-                    <h3>{{$usersproject->project_name}}</h3>
-                    <a href="{{$usersproject->project_git_url}}" target="__blank">View Project</a>
+
+            @foreach ($usersproject as $project)
+
+                <div class="projects">
+                    <div class="project-card">
+                        <img src="{{url("images/users/$project->project_img")}}" height="300px" width="300px" alt="">
+                        <h3>{{$project->project_name}}</h3>
+                        <a href="{{$project->project_git_url}}" target="__blank">View Project</a>
+                    </div>
                 </div>
-            </div>
+
+            @endforeach
+
+
         @else
 
             <div class="projects">
