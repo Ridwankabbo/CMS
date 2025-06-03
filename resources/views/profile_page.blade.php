@@ -21,8 +21,7 @@
 
                             @foreach ($datas as $data)
 
-                                <input type="checkbox" id="intro-checkbox" onclick="disableIntro()">
-                                <label for="intro-checkbox">Do you want to add intro to your website</label>
+                                
                                 <div id="intro-section">
                                     <div class="mb-5 ">
                                         <label for="logo" class="form-label">Title</label>
@@ -45,8 +44,7 @@
                                     </div>
                                 </div>
 
-                                <input type="checkbox" id="edu-checkbox">
-                                <label for="edu-checkbox">Do you want to add education section to your website</label>
+                                
                                 <div id="edu-section">
                                     <div class="mb-5">
                                         <label for="pwd" class="form-label">Choose your school image:</label>
@@ -67,8 +65,7 @@
                                     </div>
                                 </div>
 
-                                <input type="checkbox" id="about-checkbox">
-                                <label for="avout-checkbox">Do you want to add about to your website</label>
+                                
                                 <div id="about-section">
                                     <div class="mb-5">
                                         <label for="email" class="form-label">About Yourself:</label>

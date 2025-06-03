@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Templates;
 use App\Models\Usersinfo;
 use App\Models\Usersprojects;
+use App\Models\WebSiteSections;
 use Illuminate\Http\Request;
 use Str;
 
@@ -344,15 +345,18 @@ class userInfoController extends Controller
     public function showProfile()
     {
         // Get the currently logged-in user's portfolio info
-        $userPortfolios = Usersinfo::where('user_id', auth()->id())->get();
-        $usersProjects = Usersprojects::where('user_id', auth()->id())->get();
+        $user_id = auth()->id();
+        $userPortfolios = Usersinfo::where('user_id', $user_id)->get();
+        $usersProjects = Usersprojects::where('user_id', $user_id)->get();
+        $userSelectedSections = WebSiteSections::where('user_id', $user_id)->get();
 
 
         if ($userPortfolios->isNotEmpty()) {
 
             // Get the selected template id
             $userPortfolio = $userPortfolios->first();
-            $usersproject = $usersProjects->first();
+            // $usersproject = $usersProjects->first();
+            $selectedSection = $userSelectedSections->first();
             $template = Templates::where('id', $userPortfolio->template_id)->first();
 
 
@@ -361,7 +365,7 @@ class userInfoController extends Controller
             if ($template) {
 
                 // return the selected template view with data
-                return view('templates/' . "$template->template_name" . '/home', compact('userPortfolio', 'usersproject'));
+                return view('templates/' . "$template->template_name" . '/home', compact('userPortfolio', 'usersProjects', 'selectedSection'));
 
             }
 
@@ -403,6 +407,18 @@ class userInfoController extends Controller
 
         return redirect('/user-projects');
 
+    }
+
+
+    function deletProject($id){
+
+        $hasProject = Usersprojects::find($id);
+
+        if($hasProject){
+            $hasProject->delete();
+        }
+
+        return redirect('/user-projects');
     }
 
 

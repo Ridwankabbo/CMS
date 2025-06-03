@@ -5,9 +5,12 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\userInfoController;
 use App\Models\Admins;
 use App\Models\Usersprojects;
+use App\Models\WebSiteSections;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Models\Usersinfo;
+use Illuminate\Validation\Rule;
+use Psy\TabCompletion\AutoCompleter;
 
 Route::get('/', function () {
     return view('welcome');
@@ -61,6 +64,14 @@ Route::get('/user-projects', function(){
     return view('projects', compact('projectsdata'));
 });
 
+Route::get('/section-selection', function(){
+    $selectedSections = WebSiteSections::where('user_id', auth()->id())->get()->first();
+    return view('web-section-selection',['selectedSection' => $selectedSections]);
+} );
+
+Route::post('/save-selection', [templatesController::class, 'selectSection']);
+
+
 Route::get('/logout', [userController::class, 'logOut']);
 
 Route::get('/about', function(){
@@ -93,5 +104,7 @@ Route::get('/templates/portfolio/home', [userInfoController::class, 'showProfile
 
 Route::post('/save', [userInfoController::class, 'Save']);
 Route::post('add-new-project',[userInfoController::class, 'addNewProject']);
+
+Route::get('/delete-project/{id}', [userInfoController::class, 'deletProject'])->name('/delete.project');
 
 Route::get('/template-{n}', [templatesController::class, 'selectTemplate']);

@@ -6,11 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
-    <title>Document</title>
+    <title>Profile</title>
 </head>
 <body>
-    
-
 
     <div class="container-fluid">
         <div>
@@ -34,6 +32,7 @@
                         <a href="contact" class="list-group-item list-group-item-action mb-2">Contact content</a> --}}
                         <a href="user-projects" class="list-group-item list-group-item-action mb-2">Projects</a>
                         <a href="web-templates" class="list-group-item list-group-item-action mb-2">Templates</a>
+                        <a href="/section-selection" class="list-group-item list-group-item-action mb-2">select sections</a>
                     </div>
 					
 				</div>

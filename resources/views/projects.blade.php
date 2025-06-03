@@ -18,7 +18,13 @@
                     <td>{{$projectdata->id}}</td>
                     <td>{{$projectdata->project_name}}</td>
                     <td><img src="{{url("images/users/$projectdata->project_img")}}" height="50px" width="50px" alt=""></td>
-                    <td>{{$projectdata->project_git_url}}</td>
+                    <td>
+                        {{$projectdata->project_git_url}}
+
+                    </td>
+                    <td>
+                         <a href="{{ route('/delete.project', ['id' => $projectdata->id]) }}" class="btn btn-danger text-white text-center">Delete</a>
+                    </td>
                 </tr>
 
             @endforeach

@@ -14,7 +14,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     width: 100%;
     background: orange;
 }
@@ -64,7 +64,7 @@
 }
 
 #intro-details .intro-text #intro{
-    font-size: 5rem;
+    font-size: 4rem;
     color: orange;
     
 }
@@ -74,7 +74,8 @@
 }
 #intro-details .intro-text #slowgun{
     color: orange;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    text-align: center;
 }
 
 /* #intro-datails .intro-text #image{} */

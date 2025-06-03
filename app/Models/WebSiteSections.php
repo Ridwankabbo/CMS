@@ -10,6 +10,8 @@ class WebSiteSections extends Model
 
     protected $table = "web_site_sections";
 
+    public $timestamps = false;
+
     protected $fillable = [
         'user_id',
         'introduction_section',
