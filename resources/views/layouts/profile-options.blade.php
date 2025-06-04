@@ -22,7 +22,7 @@
         </div>
 		<div>
 
-			<div class="row">
+			<div class="row" style="justify-content: space-between">
 
 				<div class="col-2 pt-3  bg-light rounded-4">
 

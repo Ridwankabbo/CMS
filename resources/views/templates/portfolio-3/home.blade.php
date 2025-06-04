@@ -10,8 +10,8 @@
             <h1>{{$userPortfolio->title}}</h1>
             <p>{{$userPortfolio->intro_text}}</p>
         </header>
-
-    @elseif($selectedSection->about_section == 1)
+    @endif
+    @if($selectedSection->about_section == 1)
 
 
         <section class="section about" id="about">
@@ -22,8 +22,8 @@
                 </p>
             </div>
         </section>
-
-    @elseif($selectedSection->project_section == 1)
+    @endif
+    @if($selectedSection->project_section == 1)
 
         <section class="section projects" id="projects">
             <h2>Projects</h2>

@@ -125,42 +125,42 @@ class userInfoController extends Controller
             //     $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
             // }
 
-            if ($isProjectData) {
+            // if ($isProjectData) {
 
 
-                if ($request->hasFile('project_image')) {
-                    $project_img = $request->file('project_image');
-                    $project_img_extention = $project_img->getClientOriginalExtension();
-                    $project_img_fileName = Str::random(15);
-                    $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
-                    $project_img->move($destination_path, $project_img_fullName);
+            //     if ($request->hasFile('project_image')) {
+            //         $project_img = $request->file('project_image');
+            //         $project_img_extention = $project_img->getClientOriginalExtension();
+            //         $project_img_fileName = Str::random(15);
+            //         $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
+            //         $project_img->move($destination_path, $project_img_fullName);
 
-                }
+            //     }
 
-                Usersprojects::where('user_id', $request['user_id'])->update([
-                    'project_name' => $request->project_name,
-                    'project_img' => $project_img_fullName,
-                    'project_git_url' => $request->project_git_url,
-                    'user_id' => $request->user_id
-                ]);
-            } else {
+            //     Usersprojects::where('user_id', $request['user_id'])->update([
+            //         'project_name' => $request->project_name,
+            //         'project_img' => $project_img_fullName,
+            //         'project_git_url' => $request->project_git_url,
+            //         'user_id' => $request->user_id
+            //     ]);
+            // } else {
 
-                if ($request->hasFile('project_image')) {
-                    $project_img = $request->file('project_image');
-                    $project_img_extention = $project_img->getClientOriginalExtension();
-                    $project_img_fileName = Str::random(15);
-                    $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
-                    $project_img->move($destination_path, $project_img_fullName);
-                }
+            //     if ($request->hasFile('project_image')) {
+            //         $project_img = $request->file('project_image');
+            //         $project_img_extention = $project_img->getClientOriginalExtension();
+            //         $project_img_fileName = Str::random(15);
+            //         $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
+            //         $project_img->move($destination_path, $project_img_fullName);
+            //     }
 
-                Usersprojects::create([
-                    'project_name' => $request->project_name,
-                    'project_img' => $project_img_fullName,
-                    'project_git_url' => $request->project_git_url,
-                    'user_id' => $request->user_id
-                ]);
+            //     Usersprojects::create([
+            //         'project_name' => $request->project_name,
+            //         'project_img' => $project_img_fullName,
+            //         'project_git_url' => $request->project_git_url,
+            //         'user_id' => $request->user_id
+            //     ]);
 
-            }
+            // }
 
 
             // Updat values
@@ -248,51 +248,51 @@ class userInfoController extends Controller
                 $university_img->move($destination_path, $university_img_fullName);
             }
 
-            if ($request->hasFile('project_image')) {
-                $project_img = $request->file('project_image');
-                $project_img_extention = $project_img->getClientOriginalExtension();
-                $project_img_fileName = Str::random(15);
-                $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
-            }
+            // if ($request->hasFile('project_image')) {
+            //     $project_img = $request->file('project_image');
+            //     $project_img_extention = $project_img->getClientOriginalExtension();
+            //     $project_img_fileName = Str::random(15);
+            //     $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
+            // }
 
 
 
-            if ($isProjectData == false) {
+            // if ($isProjectData == false) {
 
 
-                if ($request->hasFile('project_image')) {
-                    $project_img = $request->file('project_image');
-                    $project_img_extention = $project_img->getClientOriginalExtension();
-                    $project_img_fileName = Str::random(15);
-                    $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
-                    $project_img->move($destination_path, $project_img_fullName);
+            //     if ($request->hasFile('project_image')) {
+            //         $project_img = $request->file('project_image');
+            //         $project_img_extention = $project_img->getClientOriginalExtension();
+            //         $project_img_fileName = Str::random(15);
+            //         $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
+            //         $project_img->move($destination_path, $project_img_fullName);
 
-                }
+            //     }
 
-                Usersprojects::where('user_id', $request['user_id'])->update([
-                    'project_name' => $request->project_name,
-                    'project_img' => $project_img_fullName,
-                    'project_git_url' => $request->project_git_url,
-                    'user_id' => $request->user_id
-                ]);
-            } else {
+            //     Usersprojects::where('user_id', $request['user_id'])->update([
+            //         'project_name' => $request->project_name,
+            //         'project_img' => $project_img_fullName,
+            //         'project_git_url' => $request->project_git_url,
+            //         'user_id' => $request->user_id
+            //     ]);
+            // } else {
 
-                if ($request->hasFile('project_image')) {
-                    $project_img = $request->file('project_image');
-                    $project_img_extention = $project_img->getClientOriginalExtension();
-                    $project_img_fileName = Str::random(15);
-                    $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
-                    $project_img->move($destination_path, $project_img_fullName);
-                }
+            //     if ($request->hasFile('project_image')) {
+            //         $project_img = $request->file('project_image');
+            //         $project_img_extention = $project_img->getClientOriginalExtension();
+            //         $project_img_fileName = Str::random(15);
+            //         $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
+            //         $project_img->move($destination_path, $project_img_fullName);
+            //     }
 
-                Usersprojects::create([
-                    'project_name' => $request->project_name,
-                    'project_img' => $project_img_fullName,
-                    'project_git_url' => $request->project_git_url,
-                    'user_id' => $request->user_id
-                ]);
+            //     Usersprojects::create([
+            //         'project_name' => $request->project_name,
+            //         'project_img' => $project_img_fullName,
+            //         'project_git_url' => $request->project_git_url,
+            //         'user_id' => $request->user_id
+            //     ]);
 
-            }
+            // }
 
 
 
@@ -311,6 +311,15 @@ class userInfoController extends Controller
                 'user_id' => $request->user_id,
                 'template_id' => 1
 
+            ]);
+
+            WebSiteSections::create([
+                'user_id' => $request->user_id,
+                'intorduction_section' => 1,
+                'education_section' => 1,
+                'about_section' => 1,
+                'skills_section' => 1,
+                'project_section' =>1
             ]);
 
 

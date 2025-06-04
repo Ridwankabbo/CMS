@@ -1,4 +1,4 @@
-@extends('layouts.profile-options');
+@extends('layouts.profile-options')
 
 @section('user-options')
 

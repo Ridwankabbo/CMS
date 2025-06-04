@@ -11,6 +11,7 @@
 
 @section('portfolio-template-main-content')
 
+            @if ($selectedSection->intorduction_section == 1)
             <div class="mt-5 mb-5 p-5 bg-light rounded">
                 <div class="text-center">
                     <h2>{{$userPortfolio->title}}</h2>
@@ -20,5 +21,6 @@
                     <img class="rounded-3" src="{{ url("images/users/$userPortfolio->image")}}" height="220px"  width="250px" alt="profile image">
                 </div>
             </div>
+            @endif
 
 @endsection
