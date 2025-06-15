@@ -66,10 +66,10 @@
                   <div id="portfolio3" class="carousel slide">
                       <div class="carousel-inner">
                         <div class="carousel-item active">
-                          <img src="{{url('images/asset/portfolio-4.1.png')}}" class="card-img-top" alt="...">
+                          <img src="{{url('images/asset/portfolio-3.1.png')}}" class="card-img-top" alt="...">
                         </div>
                         <div class="carousel-item">
-                          <img src="{{url('images/asset/portfolio-4.2.png')}}" class="card-img-top" alt="...">
+                          <img src="{{url('images/asset/portfolio-3.2.png')}}" class="card-img-top" alt="...">
                         </div>
                       </div>
                       <button class="carousel-control-prev" type="button" data-bs-target="#portfolio2" data-bs-slide="prev">
@@ -84,6 +84,33 @@
               </div>
               <div class="card-body text-center">
                   <a href="/template-3" class="btn btn-dark text-white" style="padding: 12px; font-size: 1rem;">Select</a>
+              </div>
+          </div>
+
+
+          <div class="card col-5 m-3" style="width:25rem;">
+              <div>
+                  <div id="portfolio3" class="carousel slide">
+                      <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <img src="{{url('images/asset/portfolio-4.png')}}" class="card-img-top" alt="...">
+                        </div>
+                        {{-- <div class="carousel-item">
+                          <img src="{{url('images/asset/portfolio-4.2.png')}}" class="card-img-top" alt="...">
+                        </div> --}}
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#portfolio2" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#portfolio3" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                    </div>
+              </div>
+              <div class="card-body text-center">
+                  <a href="/template-4" class="btn btn-dark text-white" style="padding: 12px; font-size: 1rem;">Select</a>
               </div>
           </div>
 

@@ -40,8 +40,8 @@
             </div>
             <form action="add-new-project" method="post" enctype="multipart/form-data">
             @csrf
-            <input type="checkbox" id="project-checkbox">
-            <label for="project-checkbox">Do you want to add project section to your website</label>
+            {{-- <input type="checkbox" id="project-checkbox">
+            <label for="project-checkbox">Do you want to add project section to your website</label> --}}
             <div class="mb-5" id="project-section">
                 <label for="project_name" class="form-label">Add new project</label>
                 <input class="form-control form-control-lg mb-4" name="project_name" type="text"

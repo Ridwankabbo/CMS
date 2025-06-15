@@ -79,7 +79,7 @@ Route::get('/about', function(){
 });
 
 // Route::get('/templates/portfolio/home', function(){
-//     return view('templates.portfolio.home');
+//     return view('templates.portfolio-4.home');
 // });
 
 
