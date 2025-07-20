@@ -2,7 +2,7 @@
 
 @section('user-options')
 
-    <div class="bg-light">
+    <div class="">
 
         <h2>Select Sections you want to put in your website</h2>
 
@@ -64,7 +64,7 @@
             
             @endif
             <div class="p-5">
-                <button class="btn btn-dark text-white">save</button>
+                <button class="btn btn-success text-white">save</button>
             </div>
         </form>
 

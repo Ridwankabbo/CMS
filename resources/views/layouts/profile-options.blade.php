@@ -96,36 +96,48 @@
         </div>
         <div>
 
-            <div class="" style="justify-content: space-between">
+            <div class="row" style="justify-content: space-between">
 
-                <div class="d-flex ">
+                <div class="col-2">
 
                     <!-- Sidebar -->
                     <div class="sidebar d-flex flex-column align-items-start sticky-top">
                         <h2 class="text-white fw-bold mb-5 fs-4">CMS Dashboard</h2>
                         <nav class="nav nav-pills flex-column w-100">
-                            <a class="nav-link active" href="overview" data-section="overview"><i
+                            <a class="nav-link " href="overview" data-section="overview"><i
                                     class="fas fa-tachometer-alt"></i> Overview</a>
-                            <a class="nav-link" href="#" data-section="posts"><i class="fas fa-file-alt"></i> My
+                            <a class="nav-link" href="profile-postes" data-section="posts"><i
+                                    class="fas fa-file-alt"></i> My
                                 Posts</a>
-                            <a class="nav-link" href="#" data-section="media"><i class="fas fa-images"></i> Media
+                            <a class="nav-link" href="profile-mediea" data-section="media"><i class="fas fa-images"></i>
+                                Media
                                 Library</a>
                             <a class="nav-link" href="profile" data-section="profile"><i class="fas fa-user-circle"></i>
                                 Profile</a>
-                            <a class="nav-link" href="profile-settings" data-section="settings"><i class="fas fa-cogs"></i>
+                            <a class="nav-link" href="web-templates" data-section="settings"><i class="fas fa-cogs"></i>
+                                Web templates</a>
+                            <a class="nav-link" href="section-selection" data-section="section_selection"><i
+                                    class="fas fa-cogs"></i>
+                                Web section selection</a>
+                            <a class="nav-link" href="profile-settings" data-section="settings"><i
+                                    class="fas fa-cogs"></i>
                                 Settings</a>
                         </nav>
-                        <div class="mt-auto pt-4 w-100 border-top border-secondary pt-3">
-                            <button id="logout-button" class="btn btn-danger w-100 rounded-pill"><i
-                                    class="fas fa-sign-out-alt me-2"></i> Logout</button>
+                        <div class="mt-auto  w-100 border-top border-secondary pt-3">
+                            <form action="/logout" method="get">
+                                @csrf
+
+                                <button id="logout-button" class="btn btn-danger w-100 rounded-pill"><i
+                                        class="fas fa-sign-out-alt me-2"></i> Logout</button>
+
+                            </form>
                         </div>
                     </div>
 
+                </div>
 
-                    <div class="">
-                        @yield('user-options')
-
-                    </div>
+                <div class="col-10">
+                    @yield('user-options')
 
                 </div>
 

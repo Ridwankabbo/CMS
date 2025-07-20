@@ -4,7 +4,7 @@
 
     <section class="col-10">
 
-        <div class="bg-light rounded-4 py-5 px-4 row" style="margin-left: 5px">
+        <div class=" py-5 px-4 row" style="margin-left: 5px">
 
 
             <div class="card col-5 m-3" style="width:25rem;">

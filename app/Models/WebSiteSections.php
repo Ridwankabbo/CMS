@@ -18,6 +18,8 @@ class WebSiteSections extends Model
         'about_section',
         'skills_section',
         'education_section',
-        'project_section'
+        'project_section',
+        'selected_template_id',
+        'selected_template_name'
     ];
 }

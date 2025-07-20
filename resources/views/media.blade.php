@@ -2,7 +2,7 @@
 
 @section('user-options')
 
-<section id="media-section" class="content-section d-none">
+<section id="media-section" class="content-section ">
                 <h2 class="h4 fw-bold text-dark">Media Library</h2>
                 <p>Upload and manage your images, videos, and documents.</p>
                 <button class="btn btn-primary"><i class="fas fa-upload me-2"></i> Upload Media</button>

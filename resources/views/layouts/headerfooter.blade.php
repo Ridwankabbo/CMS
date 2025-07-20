@@ -213,7 +213,7 @@
                         <a class="nav-link btn btn-sm btn-outline-light-custom ms-lg-3" href="singin">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-sm btn-primary-custom ms-lg-2" href="singin">Sign Up</a>
+                        <a class="nav-link btn btn-sm btn-primary-custom ms-lg-2" href="singup">Sign Up</a>
                     </li>
                 </ul>
             </div>
@@ -229,7 +229,7 @@
                     <p class="lead mb-5">
                         Our powerful and intuitive Content Management System simplifies publishing, organization, and growth.
                     </p>
-                    <a href="cms_signup_page.html" class="btn btn-primary-custom btn-lg me-3">Get Started Now</a>
+                    <a href="singup" class="btn btn-primary-custom btn-lg me-3">Get Started Now</a>
                     <a href="#features" class="btn btn-outline-light-custom btn-lg">Explore Features</a>
                 </div>
             </div>

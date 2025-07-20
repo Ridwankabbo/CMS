@@ -62,6 +62,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile-settings', function(){
         return view('profile-settings');
     });
+    Route::get('/profile-postes', function(){
+        $projectsdata = Usersprojects::where('user_id', auth()->id())->get();
+        return view('post', compact('projectsdata'));
+    });
+    Route::get('/profile-mediea', function(){
+        return view('media');
+    });
 
     Route::get('/templates/portfolio/home', [userInfoController::class, 'showProfile']);
     Route::post('/save-selection', [templatesController::class, 'selectSection']);
