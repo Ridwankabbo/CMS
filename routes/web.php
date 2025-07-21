@@ -50,11 +50,12 @@ Route::middleware('auth')->group(function () {
         return view('projects', compact('projectsdata'));
     });
 
-    Route::get('/section-selection', function () {
-        $selectedSections = WebSiteSections::where('user_id', auth()->id())->get()->first();
-        return view('web-section-selection', ['selectedSection' => $selectedSections]);
-    });
+    // Route::get('/section-selection', function () {
+    //     $selectedSections = WebSiteSections::where('user_id', auth()->id())->get()->first();
+    //     return view('web-section-selection', ['selectedSection' => $selectedSections]);
+    // });
 
+    Route::get('/section-selection', [templatesController::class, 'getSectionsForTemplate']);
     Route::get('/web-templates', function () {
         return view('web-templates');
     });

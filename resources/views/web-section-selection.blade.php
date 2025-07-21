@@ -8,61 +8,102 @@
 
         <form action="/save-selection" method="post">
             @csrf
-            @if ($selectedSection)
+            {{-- @if ($hasSections) --}}
 
-                <div class="p-4">
-                <input type="checkbox" id="intro-checkbox" name="intro-section" @checked($selectedSection->intorduction_section == 1)>
-                <label for="intro-checkbox" class="h4">Introduction section</label>
-            </div>
+                {{-- Check if Intro section exists and display its checkbox --}}
+                @if ($hasSections->Intro)
+                    <div class="p-4">
+                        <input type="checkbox" id="intro-checkbox" name="intro_section"
+                            @checked($selectedSection->intorduction_section == 1)>
+                        <label for="intro-checkbox" class="h4">Introduction section</label>
+                    </div>
+                @endif
 
-            <div class="p-4">
-                <input type="checkbox" id="edu-checkbox" name="edu-section" @checked($selectedSection->education_section == 1)>
-                <label for="edu-checkbox" class="h4">Education section</label>
-            </div>
+                {{-- Check if Education_form section exists and display its checkbox --}}
+                @if ($hasSections->Education_form)
+                    <div class="p-4">
+                        <input type="checkbox" id="edu-checkbox" name="education_section"
+                            @checked($selectedSection->education_section == 1)>
+                        <label for="edu-checkbox" class="h4">Education section</label>
+                    </div>
+                @endif
 
-            <div class="p-4">
-                <input type="checkbox" id="edu-checkbox" name="skills-section" @checked($selectedSection->skills_section == 1) >
-                <label for="edu-checkbox" class="h4">Skills section </label>
-            </div>
+                {{-- Check if Skills section exists and display its checkbox --}}
+                @if ($hasSections->Skills)
+                    <div class="p-4">
+                        <input type="checkbox" id="skills-checkbox" name="skills_section" {{-- Changed ID for uniqueness --}}
+                            @checked($selectedSection->skills_section == 1)>
+                        <label for="skills-checkbox" class="h4">Skills section </label> {{-- Changed label for uniqueness --}}
+                    </div>
+                @endif
 
-            <div class="p-4">
-                <input type="checkbox" id="about-checkbox" name="about-section" @checked($selectedSection->about_section == 1)>
-                <label for="avout-checkbox" class="h4">About section</label>
-            </div>
+                {{-- Check if About section exists and display its checkbox --}}
+                @if ($hasSections->About)
+                    <div class="p-4">
+                        <input type="checkbox" id="about-checkbox" name="about_section"
+                            @checked($selectedSection->about_section == 1)>
+                        <label for="about-checkbox" class="h4">About section</label>
+                    </div>
+                @endif
 
-            <div class="p-4">
-                <input type="checkbox" id="edu-checkbox" name="project-section" @checked($selectedSection->project_section == 1)>
-                <label for="edu-checkbox" class="h4">Project section</label>
-            </div>
+                {{-- Check if Projects section exists and display its checkbox --}}
+                @if ($hasSections->Projects)
+                    <div class="p-4">
+                        <input type="checkbox" id="project-checkbox" name="project_section" {{-- Changed ID for uniqueness --}}
+                            @checked($selectedSection->project_section == 1)>
+                        <label for="project-checkbox" class="h4">Project section</label> {{-- Changed label for uniqueness --}}
+                    </div>
+                @endif
 
-            @else
-            <div class="p-4">
-                <input type="checkbox" id="intro-checkbox" name="intro-section">
-                <label for="edu-checkbox" class="h4">Introduction section</label>
-            </div>
 
-            <div class="p-4">
-                <input type="checkbox" id="edu-checkbox" name="edu-section" >
-                <label for="edu-checkbox" class="h4">Education section</label>
-            </div>
+            {{-- @else --}}
+                {{-- Check if Intro section exists and display its checkbox --}}
+                {{-- @if ($hasSections->Intro)
+                    <div class="p-4">
+                        <input type="checkbox" id="intro-checkbox" name="intro_section"
+                            @checked($selectedSection->intorduction_section == 1)>
+                        <label for="intro-checkbox" class="h4">Introduction section</label>
+                    </div>
+                @endif --}}
 
-            <div class="p-4">
-                <input type="checkbox" id="edu-checkbox" name="skills-section"  >
-                <label for="edu-checkbox" class="h4">Skills section</label>
-            </div>
+                {{-- Check if Education_form section exists and display its checkbox --}}
+                {{-- @if ($hasSections->Education_form)
+                    <div class="p-4">
+                        <input type="checkbox" id="edu-checkbox" name="education_section"
+                            @checked($selectedSection->education_section == 1)>
+                        <label for="edu-checkbox" class="h4">Education section</label>
+                    </div>
+                @endif --}}
 
-            <div class="p-4">
-                <input type="checkbox" id="about-checkbox" name="about-section" >
-                <label for="edu-checkbox" class="h4">About section</label>
-            </div>
+                {{-- Check if Skills section exists and display its checkbox --}}
+                {{-- @if ($hasSections->Skills)
+                    <div class="p-4">
+                        <input type="checkbox" id="skills-checkbox" name="skills_section"
+                            @checked($selectedSection->skills_section == 1)>
+                        <label for="skills-checkbox" class="h4">Skills section </label> 
+                    </div>
+                @endif --}}
 
-            <div class="p-4">
-                <input type="checkbox" id="edu-checkbox" name="project-section">
-                <label for="edu-checkbox" class="h4">Project section</label>
-            </div>
+                {{-- Check if About section exists and display its checkbox --}}
+                {{-- @if ($hasSections->About)
+                    <div class="p-4">
+                        <input type="checkbox" id="about-checkbox" name="about_section"
+                            @checked($selectedSection->about_section == 1)>
+                        <label for="about-checkbox" class="h4">About section</label>
+                    </div>
+                @endif --}}
 
-            
-            @endif
+                {{-- Check if Projects section exists and display its checkbox --}}
+                {{-- @if ($hasSections->Projects)
+                    <div class="p-4">
+                        <input type="checkbox" id="project-checkbox" name="project_section" 
+                            @checked($selectedSection->project_section == 1)>
+                        <label for="project-checkbox" class="h4">Project section</label> 
+                    </div>
+                @endif --}}
+
+
+            {{-- @endif --}}
             <div class="p-5">
                 <button class="btn btn-success text-white">save</button>
             </div>

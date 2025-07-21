@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TemplatesSections;
 use App\Models\WebSiteSections;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
@@ -11,11 +12,15 @@ class templatesController extends Controller
 {
     //
 
+    // Dedicated function for update the template vale to Database
     public function selectTemplate($n)
     {
         $id = Auth()->id();
         Usersinfo::where('user_id', $id)->update([
             'template_id' => $n
+        ]);
+        WebSiteSections::where('user_id', $id)->update([
+            'template_id' =>$n
         ]);
 
         return redirect('/web-templates');
@@ -23,6 +28,7 @@ class templatesController extends Controller
 
 
 
+    //Dedicated for update the sections value to the Database
     public function selectSection(Request $request)
     {
 
@@ -40,6 +46,7 @@ class templatesController extends Controller
         // The `input()` method allows you to provide a default value (false in this case)
         // if the key is not present.
 
+        // Determining default is all false(0)
         $hasIntroSection = $request->input('intro-section', false); // Returns '1' or false
         $hasEduSection = $request->input('edu-section', false);     // Returns '1' or false
         $hasAboutSection = $request->input('about-section', false); // Returns '1' or false
@@ -66,8 +73,9 @@ class templatesController extends Controller
         $userSettings->save();
         */
 
+        // Searching if value exist
         $hasValue = WebSiteSections::where('user_id', $request->user_id)->get();
-        if ($hasValue) {
+        if ($hasValue) { // if true update values
             WebSiteSections::where('user_id', $request->user_id)->update([
                 'user_id' => $request->user_id,
                 'intorduction_section' => $hasIntroSectionBoolean,
@@ -79,8 +87,8 @@ class templatesController extends Controller
         }
 
         // Example: Log the values for debugging
-        else {
-
+        else { 
+            // Else create row and insert new valus
             WebSiteSections::create([
                 'user_id' => $request->user_id,
                 'intorduction_section' => $hasIntroSectionBoolean,
@@ -93,6 +101,14 @@ class templatesController extends Controller
 
         return redirect('/section-selection');
 
+    }
+
+    public function getSectionsForTemplate(Request $request){
+        $request['user_id'] = Auth()->id();
+        $hasSections = TemplatesSections::where('id', $request->user_id)->get()->first();
+        $selectedSection = WebSiteSections::where('user_id', auth()->id())->get()->first();
+
+        return view('web-section-selection', compact('hasSections', 'selectedSection'));
     }
 
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TemplatesSections extends Model
 {
     //
-    protected $table = 'tamplates_sections';
+    protected $table = 'templates_sections';
 
     protected $fillable = [
         'template_id',
