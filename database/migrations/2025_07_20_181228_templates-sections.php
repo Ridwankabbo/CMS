@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('About');
             $table->integer('Skills');
             $table->integer('Projects');
-            $table->integer('Education_form');
+            $table->integer('Education_from');
             $table->integer('Posts');
         });
     }

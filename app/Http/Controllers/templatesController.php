@@ -105,8 +105,11 @@ class templatesController extends Controller
 
     public function getSectionsForTemplate(Request $request){
         $request['user_id'] = Auth()->id();
-        $hasSections = TemplatesSections::where('id', $request->user_id)->get()->first();
+        $userSelectedTemplate = Usersinfo::where('user_id', $request->user_id)->get()->first();
+        $hasSections = TemplatesSections::where('template_id', $userSelectedTemplate->template_id)->get()->first();
         $selectedSection = WebSiteSections::where('user_id', auth()->id())->get()->first();
+
+        //dd($userSelectedTemplate, $hasSections);
 
         return view('web-section-selection', compact('hasSections', 'selectedSection'));
     }
