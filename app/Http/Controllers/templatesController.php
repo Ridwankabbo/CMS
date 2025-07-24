@@ -20,7 +20,7 @@ class templatesController extends Controller
             'template_id' => $n
         ]);
         WebSiteSections::where('user_id', $id)->update([
-            'template_id' =>$n
+            'template_id' => $n
         ]);
 
         return redirect('/web-templates');
@@ -31,6 +31,10 @@ class templatesController extends Controller
     //Dedicated for update the sections value to the Database
     public function selectSection(Request $request)
     {
+
+        //dd($request);
+
+        $userId = auth()->id();
 
         // $request->validate([
         //     'intro-section' => 'nullable|boolean',
@@ -47,23 +51,24 @@ class templatesController extends Controller
         // if the key is not present.
 
         // Determining default is all false(0)
-        $hasIntroSection = $request->input('intro-section', false); // Returns '1' or false
-        $hasEduSection = $request->input('edu-section', false);     // Returns '1' or false
-        $hasAboutSection = $request->input('about-section', false); // Returns '1' or false
-        $hasSkillsSection = $request->input('skills-section', false); // Rerurns '1' or false
+        $hasIntroSection = $request->input('intro_section', false); // Returns '1' or false
+        $hasEduSection = $request->input('education_section', false);     // Returns '1' or false
+        $hasAboutSection = $request->input('about_section', false); // Returns '1' or false
+        $hasSkillsSection = $request->input('skills_section', false); // Rerurns '1' or false
         $hasProjectSection = $request->input('project-section', false); // Returns '1' or false
 
         // To explicitly get a boolean (true/false):
-        $hasIntroSectionBoolean = (bool) $request->input('intro-section'); // true if checked, false if not
-        $hasEduSectionBoolean = (bool) $request->input('edu-section');
-        $hasAboutSectionBoolean = (bool) $request->input('about-section');
-        $hasSkillsSectionBoolean = (bool) $request->input('skills-section');
-        $hasProjectSectionBoolean = (bool) $request->input('project-section');
+        $hasIntroSectionBoolean = (bool) $request->input('intro_section'); // true if checked, false if not
+        $hasEduSectionBoolean = (bool) $request->input('education_section');
+        $hasAboutSectionBoolean = (bool) $request->input('about_section');
+        $hasSkillsSectionBoolean = (bool) $request->input('skills_section');
+        $hasProjectSectionBoolean = (bool) $request->input('project_section');
+
+        //dd($hasIntroSectionBoolean);
 
         // You can then use these values to save to your database, etc.
         // For example, if you have a `settings` table for the user:
 
-        $request['user_id'] = auth()->id();
 
         /*
         $userSettings = UserSetting::firstOrCreate(['user_id' => auth()->id()]);
@@ -73,21 +78,35 @@ class templatesController extends Controller
         $userSettings->save();
         */
 
+        // $dataToSave = [
+        //     'user_id' => $userId,
+        //     'intorduction_section' => $hasIntroSectionBoolean,
+        //     'education_section' => $hasEduSectionBoolean,
+        //     'about_section' => $hasAboutSectionBoolean,
+        //     'skills_section' => $hasSkillsSectionBoolean,
+        //     'project_section' => $hasProjectSectionBoolean
+        // ];
+
         // Searching if value exist
-        $hasValue = WebSiteSections::where('user_id', $request->user_id)->get();
-        if ($hasValue) { // if true update values
-            WebSiteSections::where('user_id', $request->user_id)->update([
-                'user_id' => $request->user_id,
+        $UserSelectionHasValue = WebSiteSections::where('user_id', $userId)->get()->first();
+        //dd($request, $hasIntroSectionBoolean, $UserSelectionHasValue);
+        if ($UserSelectionHasValue) { // if true update values
+            WebSiteSections::where('user_id', $userId)->update([
+                'user_id' => $userId,
                 'intorduction_section' => $hasIntroSectionBoolean,
                 'education_section' => $hasEduSectionBoolean,
                 'about_section' => $hasAboutSectionBoolean,
                 'skills_section' => $hasSkillsSectionBoolean,
                 'project_section' => $hasProjectSectionBoolean
+
+                //$UserSelectionHasValue->update($dataToSave);
+
+
             ]);
         }
 
         // Example: Log the values for debugging
-        else { 
+        else {
             // Else create row and insert new valus
             WebSiteSections::create([
                 'user_id' => $request->user_id,
@@ -97,17 +116,21 @@ class templatesController extends Controller
                 'skills_section' => $hasSkillsSectionBoolean,
                 'project_section' => $hasProjectSectionBoolean
             ]);
+
+            //$UserSelectionHasValue->create($dataToSave);
         }
 
         return redirect('/section-selection');
 
     }
 
-    public function getSectionsForTemplate(Request $request){
+    public function getSectionsForTemplate(Request $request)
+    {
         $request['user_id'] = Auth()->id();
         $userSelectedTemplate = Usersinfo::where('user_id', $request->user_id)->get()->first();
         $hasSections = TemplatesSections::where('template_id', $userSelectedTemplate->template_id)->get()->first();
-        $selectedSection = WebSiteSections::where('user_id', auth()->id())->get()->first();
+        $selectedSection = WebSiteSections::where('user_id', $request['user_id'])->get()->first();
+        //dd($selectedSection);
 
         //dd($userSelectedTemplate, $hasSections);
 

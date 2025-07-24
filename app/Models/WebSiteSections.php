@@ -20,6 +20,7 @@ class WebSiteSections extends Model
         'education_section',
         'project_section',
         'selected_template_id',
-        'selected_template_name'
+        'selected_template_name',
+        'post'
     ];
 }

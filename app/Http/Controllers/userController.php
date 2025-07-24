@@ -20,7 +20,7 @@ class userController extends Controller
         if(auth()->attempt(['email' => $incommingFields['email'], 'password' => $incommingFields['password']])){
             $request->session()->regenerate();
             //$data = Usersinfo::where('user_id', auth()->id());
-            return redirect('/profile');
+            return redirect('/overview');
         }
         else{
             return redirect('/singin');
@@ -43,7 +43,7 @@ class userController extends Controller
         auth()->login($user);
 
         //$user_data = Usersinfo::where('user_id', auth()->id())->get();
-        return redirect('/profile');
+        return redirect('/overview');
        
     }
 

@@ -21,6 +21,8 @@ return new class extends Migration
             $table->integer('skills_section');
             $table->integer('education_section');
             $table->integer('project_section');
+            $table->string('selected_template_id');
+            $table->string('selected_template_name');
         });
 
     }
