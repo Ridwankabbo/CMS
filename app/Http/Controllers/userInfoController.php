@@ -6,6 +6,7 @@ use App\Models\Templates;
 use App\Models\Usersinfo;
 use App\Models\Usersprojects;
 use App\Models\WebSiteSections;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Str;
 
@@ -319,7 +320,7 @@ class userInfoController extends Controller
                 'education_section' => 1,
                 'about_section' => 1,
                 'skills_section' => 1,
-                'project_section' =>1
+                'project_section' => 1
             ]);
 
 
@@ -393,18 +394,47 @@ class userInfoController extends Controller
         }
     }
 
+    public function showProfileApi(Request $request)
+    {
+        // Get the currently logged-in user's portfolio info
+        $user_id = auth()->id();
+        $userPortfolios = Usersinfo::where('user_id', $user_id)->get();
+        $usersProjects = Usersprojects::where('user_id', $user_id)->get();
+        $userSelectedSections = WebSiteSections::where('user_id', $user_id)->get();
+
+        if ($userPortfolios->isNotEmpty()) {
+
+            // Get the selected template id
+            $userPortfolio = $userPortfolios->first();
+            // $usersproject = $usersProjects->first();
+            $selectedSection = $userSelectedSections->first();
+            $template = Templates::where('id', $userPortfolio->template_id)->first();
+
+
+            //Updated method
+
+            if ($template) {
+
+                // return the selected template Api with data
+                return Response::json(['profile-data'=> $userPortfolio]);
+
+            }
+        }
+    }
+
 
     function addNewProject(Request $request)
     {
         $request['user_id'] = auth()->id();
-        $destination_path = public_path('images/users/');
+        $logo_destination_path = public_path('images/users/');
+        $app_destination_path = public_path('mobile_apps');
 
         if ($request->hasFile('project_image')) {
             $project_img = $request->file('project_image');
             $project_img_extention = $project_img->getClientOriginalExtension();
             $project_img_fileName = Str::random(15);
             $project_img_fullName = "$project_img_fileName" . '.' . "$project_img_extention";
-            $project_img->move($destination_path, $project_img_fullName);
+            $project_img->move($logo_destination_path, $project_img_fullName);
         }
 
         Usersprojects::create([
@@ -419,11 +449,12 @@ class userInfoController extends Controller
     }
 
 
-    function deletProject($id){
+    function deletProject($id)
+    {
 
         $hasProject = Usersprojects::find($id);
 
-        if($hasProject){
+        if ($hasProject) {
             $hasProject->delete();
         }
 

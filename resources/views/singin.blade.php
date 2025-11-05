@@ -71,7 +71,7 @@
             <button type="submit" class="btn btn-custom-primary w-100">Login</button>
         </form>
         <p class="text-center text-muted mt-4">
-            Don't have an account? <a href="cms_signup_page.html" class="text-decoration-none text-primary">Sign up here</a>
+            Don't have an account? <a href="singup" class="text-decoration-none text-primary">Sign up here</a>
         </p>
         <p class="text-center text-muted mt-2">
             <a href="#" class="text-decoration-none text-primary">Forgot Password?</a>

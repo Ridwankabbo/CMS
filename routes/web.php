@@ -72,6 +72,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/templates/portfolio/home', [userInfoController::class, 'showProfile']);
+    Route::get('templates/portfolio/home/api', [userInfoController::class, 'showProfileApi']);
     Route::post('/save-selection', [templatesController::class, 'selectSection']);
 
 

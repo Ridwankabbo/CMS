@@ -93,6 +93,9 @@
                         <label for="project_name" class="form-label">Add new project</label>
                         <input class="form-control form-control-lg mb-4" name="project_name" type="text"
                             placeholder="project name">
+                        <label for="project_type" class="form-label">Project type </label>
+                        <input class="form-control form-control-lg mb-4" name="project_type" type="text"
+                            placeholder="project type">
                         <label for="porject_image">Enter project logo or image</label>
                         <input class="form-control form-control-lg mb-4" type="file" name="project_image" width="48"
                             height="48">
