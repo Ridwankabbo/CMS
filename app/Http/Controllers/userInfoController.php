@@ -21,6 +21,12 @@ class userInfoController extends Controller
     public function Save(Request $request)
     {
 
+        /*
+            ==========================
+                Old Code
+            ==========================
+            
+
         //Used for data validation testing
 
         // $request->validate([
@@ -346,6 +352,8 @@ class userInfoController extends Controller
         // redirect to the destination url
 
         return redirect('/profile');
+
+        */      
 
     }
 

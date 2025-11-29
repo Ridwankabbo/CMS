@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\templatesController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\userInfoController;
 use App\Models\Admins;
 use App\Models\Usersprojects;
@@ -39,11 +40,13 @@ Route::middleware('auth')->group(function () {
         return view('overview');
     });
 
-    Route::get('/profile', function () {
+    Route::get('/dashboard', function () {
         $datas = Usersinfo::where('user_id', auth()->id())->get();
         // $projectsdata = Usersprojects::where('user_id', auth()->id())->get();
         return view('profile_page', compact('datas'));
     });
+    Route::get('/all-profile', [UserDashboardController::class, 'index']);
+    Route::put('/update-profile',[UserDashboardController::class,'update']);
 
     Route::get('/user-projects', function () {
         $projectsdata = Usersprojects::where('user_id', auth()->id())->get();
