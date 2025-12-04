@@ -42,6 +42,12 @@ return [
         ],
     ],
 
+
+    'api' => [
+        'driver' => 'jwt', // <--- THIS IS THE KEY CHANGE
+        'provider' => 'users',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | User Providers

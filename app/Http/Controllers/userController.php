@@ -5,19 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Admins;
 use App\Models\User;
 use App\Models\Usersinfo;
-use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class userController extends Controller
 {
 
-    public function __construct(){
-        $this->middleware('auth:api', ['except'=>['login', 'singup', 'refresh']]);
-    }
+    // public function __construct(){
+    //     $this->middleware('auth:api', ['except'=>['login', 'singup', 'refresh']]);
+    // }
 
     public function singIn(Request $request){
-        $incommingFields = $request->validate([
+        $request->validate([
             'email' => 'required',
             'password' => 'required'
 
@@ -32,11 +32,11 @@ class userController extends Controller
         //     return redirect('/singin');
         // }
 
-        if($token = Auth::attempt($incommingFields)){
-            return response()->json(['error'=>'Unauthorized']);
-        }
 
-        return $this->respondWithToken($token);
+        $user = User::where('email', $request->email)->first();
+
+        $token = $user->createToken($user->name);
+        return ['token'=>$token->plainTextToken];
        
 
     }
@@ -51,12 +51,14 @@ class userController extends Controller
         ]);
 
         $user = User::create($inCommingFields);
-        $token = Auth::login($user);
+        // $token = Auth::login($user);
 
         //$user_data = Usersinfo::where('user_id', auth()->id())->get();
         // return redirect('/overview');
        
-        return $this->respondWithToken($token, 201);
+        $token= $user->createToken($request->name);
+
+        return ['token'=>$token->plainTextToken];
     }
 
 
@@ -83,10 +85,6 @@ class userController extends Controller
                 
                 
                 return redirect('/admin-panel');
-
-                // $datas = Admins::where('id', $value->email)->get();
-
-                // return view('admin-panel', ['datas'=> $datas]);
                 
             }
             else{
@@ -94,6 +92,10 @@ class userController extends Controller
             }
         }
 
+    }
+
+    public function refresh(){
+        return $this->respondWithToken(Auth::refresh() );
     }
 
 
