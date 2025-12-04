@@ -5,11 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Admins;
 use App\Models\User;
 use App\Models\Usersinfo;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class userController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth:api', ['except'=>['login', 'singup', 'refresh']]);
+    }
+
     public function singIn(Request $request){
         $incommingFields = $request->validate([
             'email' => 'required',
@@ -17,15 +23,20 @@ class userController extends Controller
 
         ]);
 
-        if(auth()->attempt(['email' => $incommingFields['email'], 'password' => $incommingFields['password']])){
-            $request->session()->regenerate();
-            //$data = Usersinfo::where('user_id', auth()->id());
-            return redirect('/overview');
+        // if(auth()->attempt(['email' => $incommingFields['email'], 'password' => $incommingFields['password']])){
+        //     $request->session()->regenerate();
+        //     //$data = Usersinfo::where('user_id', auth()->id());
+        //     return redirect('/overview');
+        // }
+        // else{
+        //     return redirect('/singin');
+        // }
+
+        if($token = Auth::attempt($incommingFields)){
+            return response()->json(['error'=>'Unauthorized']);
         }
-        else{
-            return redirect('/singin');
-        }
-        
+
+        return $this->respondWithToken($token);
        
 
     }
@@ -40,17 +51,20 @@ class userController extends Controller
         ]);
 
         $user = User::create($inCommingFields);
-        auth()->login($user);
+        $token = Auth::login($user);
 
         //$user_data = Usersinfo::where('user_id', auth()->id())->get();
-        return redirect('/overview');
+        // return redirect('/overview');
        
+        return $this->respondWithToken($token, 201);
     }
 
 
     function logOut()   {
         auth()->logout();
-        return redirect('/');
+        // return redirect('/');
+
+        return response()->json(['message'=>'Logout successfull']);
     }
 
     function adminController(Request $request){
@@ -80,5 +94,14 @@ class userController extends Controller
             }
         }
 
+    }
+
+
+    protected function respondWithToken($token){
+        return response()->json([
+            'accessToken'=>$token,
+            'token_type'=>'bearer',
+            'expires_in'=> Auth::factory()->getTTL() * 60
+        ]);
     }
 }
