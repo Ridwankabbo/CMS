@@ -360,49 +360,49 @@ class userInfoController extends Controller
 
     // showProfile function used for show there profiles
 
-    public function showProfile()
-    {
-        // Get the currently logged-in user's portfolio info
-        $user_id = auth()->id();
-        $userPortfolios = Usersinfo::where('user_id', $user_id)->get();
-        $usersProjects = Usersprojects::where('user_id', $user_id)->get();
-        $userSelectedSections = WebSiteSections::where('user_id', $user_id)->get();
+    // public function showProfile()
+    // {
+    //     // Get the currently logged-in user's portfolio info
+    //     $user_id = auth()->id();
+    //     $userPortfolios = Usersinfo::where('user_id', $user_id)->get();
+    //     $usersProjects = Usersprojects::where('user_id', $user_id)->get();
+    //     $userSelectedSections = WebSiteSections::where('user_id', $user_id)->get();
 
 
-        if ($userPortfolios->isNotEmpty()) {
+    //     if ($userPortfolios->isNotEmpty()) {
 
-            // Get the selected template id
-            $userPortfolio = $userPortfolios->first();
-            // $usersproject = $usersProjects->first();
-            $selectedSection = $userSelectedSections->first();
-            $template = Templates::where('id', $userPortfolio->template_id)->first();
-
-
-            //Updated method
-
-            if ($template) {
-
-                // return the selected template view with data
-                return view('templates/' . "$template->template_name" . '/home', compact('userPortfolio', 'usersProjects', 'selectedSection'));
-
-            }
+    //         // Get the selected template id
+    //         $userPortfolio = $userPortfolios->first();
+    //         // $usersproject = $usersProjects->first();
+    //         $selectedSection = $userSelectedSections->first();
+    //         $template = Templates::where('id', $userPortfolio->template_id)->first();
 
 
-            //Old method
+    //         //Updated method
 
-            // if($userPortfolio->template_id == "1"){
-            //     // Pass the data to a view
-            //     //return view("templates.{{$name->template_name}}.home", ['portfolio' => $userPortfolio]);
-            //     //return view("templates.portfolio-1.home", ['portfolio' => $userPortfolio]);
-            // }
-            // if($userPortfolio->template_id == "2"){
-            //     // Pass the data to a view
-            //     return view('templates.portfolio-2.home', ['portfolio' => $userPortfolio]);
-            // }
-        }
-    }
+    //         if ($template) {
 
-    public function showProfileApi(Request $request)
+    //             // return the selected template view with data
+    //             return view('templates/' . "$template->template_name" . '/home', compact('userPortfolio', 'usersProjects', 'selectedSection'));
+
+    //         }
+
+
+    //         //Old method
+
+    //         // if($userPortfolio->template_id == "1"){
+    //         //     // Pass the data to a view
+    //         //     //return view("templates.{{$name->template_name}}.home", ['portfolio' => $userPortfolio]);
+    //         //     //return view("templates.portfolio-1.home", ['portfolio' => $userPortfolio]);
+    //         // }
+    //         // if($userPortfolio->template_id == "2"){
+    //         //     // Pass the data to a view
+    //         //     return view('templates.portfolio-2.home', ['portfolio' => $userPortfolio]);
+    //         // }
+    //     }
+    // }
+
+    public function showProfile(Request $request)
     {
         // Get the currently logged-in user's portfolio info
         $user_id = auth()->id();
