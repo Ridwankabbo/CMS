@@ -12,5 +12,5 @@ use Illuminate\Support\Facades\Route;
 Route::post('/singup', [userSanctunAuthController::class, 'store']);
 Route::post('/singin', [userSanctunAuthController::class, 'show']);
 
-Route::get('/dashboard', [userInfoController::class, 'showProfile']);
+Route::get('/dashboard', [userInfoController::class, 'showProfile'])->middleware('auth:sanctum');
 

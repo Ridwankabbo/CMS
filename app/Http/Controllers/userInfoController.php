@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Templates;
 use App\Models\Usersinfo;
 use App\Models\Usersprojects;
@@ -9,6 +8,7 @@ use App\Models\WebSiteSections;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Str;
+
 
 class userInfoController extends Controller
 {
@@ -404,30 +404,7 @@ class userInfoController extends Controller
 
     public function showProfile(Request $request)
     {
-        // Get the currently logged-in user's portfolio info
-        $user_id = auth()->id();
-        $userPortfolios = Usersinfo::where('user_id', $user_id)->get();
-        $usersProjects = Usersprojects::where('user_id', $user_id)->get();
-        $userSelectedSections = WebSiteSections::where('user_id', $user_id)->get();
-
-        if ($userPortfolios->isNotEmpty()) {
-
-            // Get the selected template id
-            $userPortfolio = $userPortfolios->first();
-            // $usersproject = $usersProjects->first();
-            $selectedSection = $userSelectedSections->first();
-            $template = Templates::where('id', $userPortfolio->template_id)->first();
-
-
-            //Updated method
-
-            if ($template) {
-
-                // return the selected template Api with data
-                return Response::json(['profile-data'=> $userPortfolio]);
-
-            }
-        }
+        return $request->user();
     }
 
 
