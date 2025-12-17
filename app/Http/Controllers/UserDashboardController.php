@@ -37,10 +37,11 @@ class UserDashboardController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Usersinfo $usersinfo)
+    public function show(Request $request, Usersinfo $usersinfo)
     {
         //
-        return response()->json(['userInfo'=>$usersinfo]);
+        $user_info = Usersinfo::where('user_id', $request->user())->first();
+        return response()->json(['userInfo'=>$user_info]);
     }
 
     /**
@@ -55,7 +56,7 @@ class UserDashboardController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Usersinfo $usersinfo)
+    public function update(Request $request, Usersinfo $usersinfo, $dashboard   )
     {
         //
         $validateData = $request->validate([

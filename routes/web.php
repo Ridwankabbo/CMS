@@ -27,9 +27,9 @@ Route::middleware('guest')->group(function () {
     Route::get("/singin", function () {
         return view("singin");
     });
-    Route::post('/singin', [userController::class, 'singIn']);
+    // Route::post('/singin', [userController::class, 'singIn']);
 
-    Route::post('/register', [userController::class, 'singUp']);
+    // Route::post('/register', [userController::class, 'singUp']);
 });
 
 
@@ -79,7 +79,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/save-selection', [templatesController::class, 'selectSection']);
 
 
-    Route::get('/logout', [userController::class, 'logOut']);
+    // Route::get('/logout', [userController::class, 'logOut']);
 
     Route::post('/save', [userInfoController::class, 'Save']);
     Route::post('add-new-project', [userInfoController::class, 'addNewProject']);
@@ -109,7 +109,7 @@ Route::get('/admin-panel', function () {
     return view('admin-panel', ["admin_datas" => $admin_datas]);
 });
 
-Route::post('/admin-panel-action', [userController::class, 'adminController']);
+// Route::post('/admin-panel-action', [userController::class, 'adminController']);
 
 
 Route::get('/about', function () {
