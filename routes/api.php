@@ -16,5 +16,6 @@ Route::post('/singin', [userSanctunAuthController::class, 'show']);
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/dashboard', [UserDashboardController::class, 'show']);
     Route::post('/dashboard', [UserDashboardController::class, 'create']);
+    Route::post('/logout', [userSanctunAuthController::class, 'destroy']);
 });
 

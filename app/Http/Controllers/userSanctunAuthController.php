@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Usersinfo;
 use Illuminate\Http\Request;
 
 class userSanctunAuthController extends Controller
@@ -30,6 +31,10 @@ class userSanctunAuthController extends Controller
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>$request->password
+        ]);
+
+        Usersinfo::create([
+            'user_id'=>$user->id
         ]);
         
         $token = $user->createToken($request->name);
@@ -68,8 +73,11 @@ class userSanctunAuthController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
         //
+        $request->user()->tokens()->delete();
+
+        return response()->json(['message'=>"Logout successfully"]);
     }
 }
