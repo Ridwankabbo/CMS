@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usersinfo;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserDashboardController extends Controller
@@ -21,9 +22,11 @@ class UserDashboardController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        $Usersinfo =  Usersinfo::create($request);
+        return response()->json(['$usersinfo', $Usersinfo]);
     }
 
     /**
@@ -40,8 +43,9 @@ class UserDashboardController extends Controller
     public function show(Request $request, Usersinfo $usersinfo)
     {
         //
-        $user_info = Usersinfo::where('user_id', $request->user())->first();
-        return response()->json(['userInfo'=>$user_info]);
+        $user = $request->user();
+        $user_information = Usersinfo::where('user_id', $user->id)->first();
+        return response()->json(['user'=>$user,'userInfo'=>$user_information]);
     }
 
     /**
