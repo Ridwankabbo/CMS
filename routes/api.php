@@ -10,12 +10,15 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::post('/singup', [userSanctunAuthController::class, 'store']);
-Route::post('/singin', [userSanctunAuthController::class, 'show']);
+Route::post('/register', [userSanctunAuthController::class, 'register']);
+Route::post('/verify-otp', [userSanctunAuthController::class, 'verifyOtp']);
+Route::post('/singin', [userSanctunAuthController::class, 'singin']);
+Route::post('/forgot-password', [userSanctunAuthController::class, 'forgotPassword']);
+Route::post('/reset-password', [userSanctunAuthController::class, 'resetPassword']);
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/dashboard', [UserDashboardController::class, 'show']);
     Route::post('/dashboard', [UserDashboardController::class, 'create']);
-    Route::post('/logout', [userSanctunAuthController::class, 'destroy']);
+    Route::post('/logout', [userSanctunAuthController::class, 'logout']);
 });
 

@@ -12,17 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         //
-
-        Schema::create('users_info', function(Blueprint $table){
+        Schema::create('otps', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->string('intro_text')->nullable();
-            $table->string('image')->nullable();
-            $table->string('about')->nullable();
-            $table->string('phone')->nullable();
-            $table->foreignId('user_id')->constrained();
+            $table->string('email');
+            $table->string('otp');
+            $table->timestamp('expires_at');
             $table->timestamps();
-
         });
     }
 
@@ -32,6 +27,6 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::dropIfExists('users_info');
+        Schema::dropIfExists('otps');
     }
 };
