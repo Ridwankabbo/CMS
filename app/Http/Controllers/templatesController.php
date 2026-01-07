@@ -8,9 +8,15 @@ use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use App\Models\Usersinfo;
 
+
+// ****************** OLD template Colntorller ***************************** 
+
+
 class templatesController extends Controller
 {
     //
+
+   
 
     // Dedicated function for update the template vale to Database
     public function selectTemplate($n)
@@ -29,8 +35,7 @@ class templatesController extends Controller
 
 
     //Dedicated for update the sections value to the Database
-    public function selectSection(Request $request)
-    {
+    public function selectSection(Request $request){
 
         //dd($request);
 

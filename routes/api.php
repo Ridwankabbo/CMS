@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\templatesController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\userInfoController;
@@ -16,6 +17,7 @@ Route::post('/singin', [userSanctunAuthController::class, 'singin']);
 Route::post('/forgot-password', [userSanctunAuthController::class, 'forgotPassword']);
 Route::post('/reset-password', [userSanctunAuthController::class, 'resetPassword']);
 
+
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/dashboard', [UserDashboardController::class, 'show']);
     Route::post('/dashboard', [UserDashboardController::class, 'create']);
@@ -24,6 +26,6 @@ Route::middleware('auth:sanctum')->group(function(){
 });
 
 Route::middleware('admin')->group(function(){
-    
+    Route::get('/admin/templates', [TemplatesController::class, 'index']);
 });
 

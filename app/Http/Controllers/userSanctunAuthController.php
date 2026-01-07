@@ -43,7 +43,8 @@ class userSanctunAuthController extends Controller
             ]);
 
             $user_info = Usersinfo::create([
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'template_id'=> '1',
             ]);
 
             $opt = $this->generateOtp();
