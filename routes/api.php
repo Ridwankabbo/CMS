@@ -19,6 +19,11 @@ Route::post('/reset-password', [userSanctunAuthController::class, 'resetPassword
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/dashboard', [UserDashboardController::class, 'show']);
     Route::post('/dashboard', [UserDashboardController::class, 'create']);
+
     Route::post('/logout', [userSanctunAuthController::class, 'logout']);
+});
+
+Route::middleware('admin')->group(function(){
+    
 });
 
