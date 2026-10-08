@@ -24,7 +24,7 @@ Route::middleware('guest')->group(function () {
         return view('singup');
     });
 
-    Route::get("/singin", function () {
+    Route::get("/login", function () {
         return view("singin");
     });
     // Route::post('/singin', [userController::class, 'singIn']);
@@ -109,33 +109,33 @@ Route::get('/admin-panel', function () {
     return view('admin-panel', ["admin_datas" => $admin_datas]);
 });
 
-// Route::post('/admin-panel-action', [userController::class, 'adminController']);
+Route::post('/admin-panel-action', [userController::class, 'adminController']);
 
 
 Route::get('/about', function () {
     return view('about');
 });
 
-// Route::get('/templates/portfolio/home', function(){
-//     return view('templates.portfolio-4.home');
-// });
+Route::get('/templates/portfolio/home', function(){
+    return view('templates.portfolio-4.home');
+});
 
 
-// Route::get('/templates/portfolio/home', function(){
+Route::get('/templates/portfolio/home', function(){
 
-//     return view('templates.portfolio.home');
-// });
+    return view('templates.portfolio.home');
+});
 
-// Route::get('/templates/portfolio/index', function(){
-//     return view('templates.portfolio-3.index');
-// });
+Route::get('/templates/portfolio/index', function(){
+    return view('templates.portfolio-3.index');
+});
 
 
 
-// Route::get('/templates/portfolio/about', function(){
-//     return view('templates.portfolio.about');
-// });
+Route::get('/templates/portfolio/about', function(){
+    return view('templates.portfolio.about');
+});
 
-// Route::get('/templates/portfolio/contact', function(){
-//     return view('templates.portfolio.contact');
-// });
+Route::get('/templates/portfolio/contact', function(){
+    return view('templates.portfolio.contact');
+});
